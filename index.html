@@ -21,17 +21,20 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ===================================================================== Hero -->
+<!-- Mobile bar — fixed, so it stays available the whole way down -->
+<div class="topbar dark-surface">
+  <a class="topbar__brand" href="#main" aria-label="The Strategy Retreat — home">
+    <img class="brand-mark" src="assets/strategy-community-mark-white.png" alt="The Strategy Retreat" data-fallback>
+  </a>
+  <div class="topbar__actions">
+    <a class="topbar__pdf" href="assets/the-strategy-retreat-2026.pdf" download>Download PDF</a>
+    <a class="btn btn--primary" href="registration.html">Register</a>
+  </div>
+</div>
+
 <header class="hero dark-surface">
   <img class="hero__bg" src="assets/photos/hero-d.png" alt="" data-fallback>
   <div class="hero__scrim"></div>
-
-  <!-- Mobile bar -->
-  <div class="hero__bar">
-    <a href="#main" aria-label="The Strategy Community — home">
-      <img class="brand-mark" src="assets/strategy-community-mark-white.png" alt="The Strategy Community" data-fallback loading="lazy" decoding="async">
-    </a>
-    <a class="btn btn--primary" href="registration.html">Register</a>
-  </div>
 
   <!-- Desktop floating nav -->
   <div class="hero__nav">
@@ -149,13 +152,13 @@
           <h3 class="display">Real-world knowledge. Stronger connections. Strategic growth</h3>
           <p class="lede">Not a conference and not a lecture. Every speaker is a strategist, every discussion turns into a lesson drawn from real business challenges, and the mix of industries makes it both diverse and eye-opening.</p>
         </div>
+        <dl class="stats">
+          <div class="stat"><dd class="stat__value">60+</dd><dt class="stat__label">Leaders</dt></div>
+          <div class="stat"><dd class="stat__value">15</dd><dt class="stat__label">Sessions</dt></div>
+          <div class="stat"><dd class="stat__value">1</dd><dt class="stat__label">Panel</dt></div>
+        </dl>
       </div>
 
-      <dl class="stats">
-        <div class="stat"><dd class="stat__value">60+</dd><dt class="stat__label">Leaders</dt></div>
-        <div class="stat"><dd class="stat__value">15</dd><dt class="stat__label">Sessions</dt></div>
-        <div class="stat"><dd class="stat__value">1</dd><dt class="stat__label">Panel</dt></div>
-      </dl>
     </div>
   </div>
 </section>
@@ -166,7 +169,6 @@
     <h2 class="eyebrow rail__label" id="pillars-title">Knowledge Pillars</h2>
     <div>
       <div class="pillars__intro">
-        <div class="media"><img src="assets/photos/retreat-4x3-3.png" alt="" data-fallback loading="lazy" decoding="async"></div>
         <div>
           <h3 class="display">Strategy turns from theory into shared practice.</h3>
           <ul class="outcomes">
@@ -177,6 +179,7 @@
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5AE2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.8-5.3-2.9-5.3 2.9 1.1-5.8L3.5 9.7l5.9-.8z"></path></svg><span>Reconnect with curiosity and playfulness, doing things they haven't done in years.</span></li>
           </ul>
         </div>
+        <div class="media"><img src="assets/photos/retreat-4x3-3.png" alt="" data-fallback loading="lazy" decoding="async"></div>
       </div>
 
       <div class="tabs" role="tablist" aria-label="Knowledge pillars">
@@ -238,7 +241,7 @@
           </div>
         </div>
 
-        <div>
+        <div class="methodology__copy">
           <p class="lede">Sharing knowledge, building connections, and staying grounded overlap to produce what guests describe afterwards as a lifetime experience.</p>
           <p class="lede">It is not a conference and not a lecture — every speaker is a strategist, and every discussion turns into a lesson drawn from real business challenges.</p>
         </div>

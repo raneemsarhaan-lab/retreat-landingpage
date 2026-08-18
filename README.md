@@ -51,13 +51,19 @@ Each of these is a deliberate change, listed so it can be reverted:
   two arrows. Now that four venue photos exist they drive a real scroll-snap
   carousel: swipeable on touch, buttons wrap around, and a live region announces
   "Photo n of 4".
-- The leaders rail scrolled with no affordance saying so. It now carries
-  position dots, which appear only when the cards actually outrun their
-  container — on a wide desktop all four fit, so the dots stay hidden.
-- The About stats sit on their own centred row rather than tucked into the
-  second split's text column, and the methodology diagram now precedes its
-  supporting copy on mobile (desktop keeps the artboard's copy-left,
-  diagram-right pairing).
+**Mobile-only revisions.** Requested after the artboards, and scoped below
+900px — desktop keeps the artboard arrangement in every case:
+
+- The top bar is fixed rather than sticky inside the hero, so it stays reachable
+  the whole way down, and carries a "Download PDF" link in brand gold beside
+  Register.
+- The leaders rail carries position dots so the horizontal scroll is
+  discoverable; they drive the rail on click and track it on scroll.
+- The About stats sit on their own centred row; on desktop they stay in the
+  second split's right-hand column.
+- In Knowledge Pillars the section title comes before its image.
+- In Methodology the diagram precedes the copy, and the two supporting
+  paragraphs are dropped entirely; both are unchanged on desktop.
 - The two dark-surface logo copies were flattened by `brightness(0) invert(1)`,
   which would erase the gold compass needle. They now point at a dedicated white
   lockup instead.

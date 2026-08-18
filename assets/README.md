@@ -54,6 +54,7 @@ is a one-line change.
 | `logos/business-belaraby.png` | Partners | 20px tall, transparent |
 | `logos/nexus.png` | Partners | 42px tall, transparent |
 | `logos/jrny.png` | Partners | 32px tall, transparent |
+| `the-strategy-retreat-2026.pdf` | Mobile bar "Download PDF" | The link is wired and waiting on the file |
 
 Both lockups were pasted into the conversation as images rather than uploaded as
 files, so there was nothing on disk to install.
