@@ -1172,3 +1172,31 @@ video[data-ambient] { pointer-events: none; }
   .scroller,
   .carousel__track { scroll-snap-type: none; scroll-behavior: auto; }
 }
+
+/* =========================================================================
+   Mobile type scale — section headings match the hero
+   Last in the file on purpose: these override same-specificity base rules.
+   ========================================================================= */
+@media (max-width: 899px) {
+  .section-head .display,
+  .pillars__intro .display,
+  .methodology__title,
+  .partners .display,
+  .venue__body .display,
+  .faq__intro .display,
+  .cta .display {
+    font-size: clamp(2rem, 8.5vw, 2.375rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -.01em;
+  }
+
+  /* The About sub-heads and the values heading stay subordinate — they sit in
+     half-width columns where the hero size would not fit — but take the same
+     weight and tracking so the page reads as one family. */
+  .split .display,
+  .values .display {
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+}

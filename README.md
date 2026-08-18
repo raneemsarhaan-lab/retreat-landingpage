@@ -64,6 +64,10 @@ Each of these is a deliberate change, listed so it can be reverted:
 - In Knowledge Pillars the section title comes before its image.
 - In Methodology the diagram precedes the copy, and the two supporting
   paragraphs are dropped entirely; both are unchanged on desktop.
+- Section headings take the hero's type — `clamp(2rem, 8.5vw, 2.375rem)` at
+  weight 700 rather than 900 — so they scale in step with it at any width. The
+  About sub-heads and "Built around three values." keep their smaller sizes,
+  since they sit in half-width columns, but share the weight and tracking.
 - The three Experience cards fold into tabs: one open at a time, the rest
   collapsed to a title row. The heading row only takes `role="button"` and
   keyboard handling below 900px, so desktop keeps plain headings rather than
