@@ -48,16 +48,27 @@ is a one-line change.
 
 | Path | Used by | Note |
 |---|---|---|
-| `strategy-community-mark-white.png` | Mobile bar, desktop nav | The white lockup with the gold needle intact. Drawn 26px (mobile) / 32px (desktop) tall |
-| `strategy-community-mark.png` | Footer | The navy lockup. Drawn 30 / 34px tall |
 | `cutout-badr.png` | Delegate card 1 | Cut-out portrait on transparent ground, 3:4 |
 | `logos/business-belaraby.png` | Partners | 20px tall, transparent |
 | `logos/nexus.png` | Partners | 42px tall, transparent |
 | `logos/jrny.png` | Partners | 32px tall, transparent |
 | `the-strategy-retreat-2026.pdf` | Mobile bar "Download PDF" | The link is wired and waiting on the file |
 
-Both lockups were pasted into the conversation as images rather than uploaded as
-files, so there was nothing on disk to install.
+## Brand mark — installed
+
+The supplied white knockout lockup was cropped to the mark alone (its left
+panel, 118×188) and installed two ways:
+
+| Path | Used by | Note |
+|---|---|---|
+| `strategy-community-mark-white.png` | Mobile bar (34px), desktop nav (32px) | the supplied artwork, cropped — unmodified pixels |
+| `strategy-community-mark.png` | Footer (30 / 34px) | **derived**: the same alpha mask recoloured to `--navy-900` for light grounds |
+
+Two things to note. The supplied file is a single-colour knockout, so **neither
+carries the gold compass needle** of the full-colour mark — supply a
+full-colour PNG and both can be replaced. And the navy version is a mechanical
+recolour of your artwork, not an official asset; swap it for the real navy mark
+when convenient.
 
 **Hero resolution.** `hero-d.png` is 640×426 but runs full-bleed behind an
 850px-tall desktop hero — it will look soft above roughly 900px wide. A ≥1920px

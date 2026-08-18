@@ -205,7 +205,7 @@ button { font: inherit; color: inherit; }
 }
 .topbar__brand { display: flex; align-items: center; flex: 0 1 auto; min-width: 0; }
 .topbar__brand .logo-fallback { font-size: .625rem; line-height: 1.25; }
-.topbar__brand .brand-mark { max-width: 128px; object-fit: contain; object-position: left center; }
+.topbar__brand .brand-mark { height: 34px; width: auto; }
 .topbar__actions { display: flex; align-items: center; gap: var(--space-3); flex: none; }
 .topbar__pdf {
   display: inline-flex;
