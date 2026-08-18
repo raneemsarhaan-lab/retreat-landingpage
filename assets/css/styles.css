@@ -149,6 +149,8 @@ button { font: inherit; color: inherit; }
 }
 .media[data-asset-missing="true"] > img { display: none; }
 
+video[data-ambient] { pointer-events: none; }
+
 .logo-fallback {
   font-family: var(--font-display);
   font-weight: 900;
@@ -177,7 +179,7 @@ button { font: inherit; color: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 50%;
+  object-position: 72% 50%;
 }
 
 .hero__scrim {
@@ -227,12 +229,12 @@ button { font: inherit; color: inherit; }
 
 /* Marquee */
 .marquee {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
+  position: relative;
+  order: 2;
   z-index: 1;
   overflow: hidden;
   pointer-events: none;
+  padding: 0;
 }
 .marquee__track {
   display: flex;
@@ -257,11 +259,12 @@ button { font: inherit; color: inherit; }
 .hero__copy {
   position: relative;
   z-index: 2;
+  order: 1;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: var(--space-10) var(--space-5) var(--space-8);
+  padding: var(--space-10) var(--space-5) var(--space-6);
 }
 
 .hero__kicker {
@@ -311,6 +314,7 @@ button { font: inherit; color: inherit; }
   background: var(--gold-500);
 }
 .hero__meta-date {
+  display: block;
   font-family: var(--font-display);
   font-weight: 900;
   font-size: 1.125rem;
@@ -318,6 +322,7 @@ button { font: inherit; color: inherit; }
   color: var(--white);
 }
 .hero__meta-place {
+  display: block;
   margin-top: 4px;
   font-size: .8125rem;
   color: rgba(255,255,255,.78);
@@ -726,7 +731,7 @@ button { font: inherit; color: inherit; }
   .exp-card > video,
   .exp-card__scrim { opacity: 0; transition: opacity var(--dur-base) var(--ease); }
 
-  .exp-card__body { position: static; padding: 0; }
+  .exp-card__body { position: relative; z-index: 2; padding: 0; }
 
   .exp-card__head {
     width: 100%;
@@ -995,6 +1000,12 @@ button { font: inherit; color: inherit; }
   .hero__nav .brand-mark { height: 32px; }
   .hero__nav .btn { min-height: 46px; font-size: 1rem; }
 
+  .hero__bg { object-position: center 50%; }
+  .marquee {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+  }
   .marquee span { font-size: 300px; }
 
   .hero__copy { padding: 167px var(--space-12) 118px 56px; }
