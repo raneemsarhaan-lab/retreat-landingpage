@@ -483,7 +483,7 @@ button { font: inherit; color: inherit; }
    ========================================================================= */
 .pillars__intro { margin-bottom: var(--space-6); }
 .pillars__intro .media { height: 200px; margin-bottom: var(--space-5); }
-.pillars__intro .display { font-size: 1.375rem; }
+.pillars__intro .display { font-size: 1.375rem; margin-bottom: var(--space-5); }
 
 .outcomes {
   display: none;
@@ -689,11 +689,9 @@ button { font: inherit; color: inherit; }
   position: absolute;
   inset-inline: 0;
   bottom: 0;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
   padding: var(--space-4) var(--space-5) var(--space-5);
 }
+.exp-card__head { display: flex; gap: 14px; align-items: center; }
 .exp-card__icon {
   flex: none;
   display: flex;
@@ -705,7 +703,7 @@ button { font: inherit; color: inherit; }
   background: var(--white);
 }
 .exp-card__title {
-  margin-bottom: 4px;
+  flex: 1;
   font-family: var(--font-display);
   font-weight: 900;
   font-size: .875rem;
@@ -713,7 +711,50 @@ button { font: inherit; color: inherit; }
   text-transform: uppercase;
   color: var(--white);
 }
+.exp-card__sign { display: none; }
+.exp-card__panel { margin-top: var(--space-2); padding-left: 52px; }
 .exp-card p { font-size: .8125rem; line-height: 1.5; color: rgba(255,255,255,.88); }
+
+@media (max-width: 899px) {
+  /* Folded tabs: collapsed shows the title row only; opening reveals the
+     footage and the copy. */
+  .exp-card {
+    height: auto;
+    background: var(--navy-900);
+    transition: height var(--dur-base) var(--ease);
+  }
+  .exp-card > video,
+  .exp-card__scrim { opacity: 0; transition: opacity var(--dur-base) var(--ease); }
+
+  .exp-card__body { position: static; padding: 0; }
+
+  .exp-card__head {
+    width: 100%;
+    min-height: 64px;
+    padding: var(--space-3) var(--space-4);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .exp-card__head:focus-visible { outline: 3px solid var(--gold-500); outline-offset: -3px; }
+  .exp-card__sign {
+    display: block;
+    flex: none;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--gold-500);
+  }
+  .exp-card__panel {
+    margin: 0;
+    padding: 0 var(--space-4) var(--space-5) calc(var(--space-4) + 52px);
+  }
+
+  .exp-card.is-folded .exp-card__panel { display: none; }
+
+  .exp-card.is-open { height: 260px; position: relative; }
+  .exp-card.is-open > video,
+  .exp-card.is-open .exp-card__scrim { opacity: 1; }
+  .exp-card.is-open .exp-card__body { position: absolute; inset-inline: 0; bottom: 0; padding-bottom: var(--space-2); }
+}
 
 /* =========================================================================
    Partners
@@ -886,15 +927,7 @@ button { font: inherit; color: inherit; }
 .footer__col { display: none; }
 
 .footer__brand { display: flex; align-items: center; gap: var(--space-3); margin-bottom: 14px; }
-.footer__brand img { height: 30px; width: auto; }
-.footer__brand span {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: .875rem;
-  line-height: 1.2;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-}
+.footer__brand img { height: 44px; width: auto; }
 .footer__blurb { font-size: .875rem; color: var(--gray-700); }
 .footer__heading {
   margin-bottom: var(--space-4);
@@ -1032,7 +1065,7 @@ button { font: inherit; color: inherit; }
   .pillars__intro .media { order: -1; height: 280px; margin-bottom: 0; border-radius: var(--radius-2xl); }
   .methodology__copy { display: block; }
   .dots { display: none; }
-  .pillars__intro .display { font-size: clamp(1.5rem, 2.6vw, 2.125rem); }
+  .pillars__intro .display { font-size: clamp(1.5rem, 2.6vw, 2.125rem); margin-bottom: 0; }
 
   .outcomes { display: flex; }
   .tabs { gap: var(--space-8); margin: 0 0 var(--space-10); }
@@ -1109,9 +1142,8 @@ button { font: inherit; color: inherit; }
 
   .footer__top { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-10); padding-block: 72px var(--space-10); }
   .footer__col { display: block; }
-  .footer__brand img { height: 34px; }
-  .footer__brand span { font-size: .9375rem; }
-  .footer__blurb { max-width: 280px; font-size: .9375rem; line-height: 1.7; }
+  .footer__brand img { height: 52px; }
+    .footer__blurb { max-width: 280px; font-size: .9375rem; line-height: 1.7; }
   .footer__bottom .shell { padding-block: var(--space-5); font-size: .8125rem; }
 }
 

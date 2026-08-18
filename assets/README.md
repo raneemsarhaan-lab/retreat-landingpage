@@ -54,6 +54,31 @@ is a one-line change.
 | `logos/jrny.png` | Partners | 32px tall, transparent |
 | `the-strategy-retreat-2026.pdf` | Mobile bar "Download PDF" | The link is wired and waiting on the file |
 
+## Brand — installed
+
+| Path | Used by | Note |
+|---|---|---|
+| `strategy-community-mark-white.png` | Nav bar, mobile and desktop | the mark alone, cropped from the white lockup — gold needle intact |
+| `strategy-community-lockup.png` | Footer, mobile and desktop | the full navy lockup |
+
+**Both are recovered from phone screenshots, not exported files.** The artwork
+arrived composited on a black backdrop, so it was un-matted — alpha recovered
+from the backdrop and colour un-premultiplied — then cropped. The result is
+clean at the sizes used (34–52px tall) and its aspect ratio matches the one
+supplied vector-clean lockup to within 0.2%, so nothing is cropped off. Even so,
+**replace both with the original PNG or SVG exports when you can**: these top out
+at screen resolution and will not scale up.
+
+## Still needed
+
+| Path | Used by | Note |
+|---|---|---|
+| `cutout-badr.png` | Delegate card 1 | Cut-out portrait on transparent ground, 3:4 |
+| `logos/business-belaraby.png` | Partners | 20px tall, transparent |
+| `logos/nexus.png` | Partners | 42px tall, transparent |
+| `logos/jrny.png` | Partners | 32px tall, transparent |
+| `the-strategy-retreat-2026.pdf` | Mobile bar "Download PDF" | The link is wired and waiting on the file |
+
 ## Brand mark — installed
 
 The supplied white knockout lockup was cropped to the mark alone (its left

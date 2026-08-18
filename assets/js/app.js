@@ -93,6 +93,65 @@
     });
   });
 
+  /* --- Experience: folded tabs on mobile -----------------------------------
+     The heading row only becomes a control below 900px, so the role and its
+     keyboard handling are applied and withdrawn with the breakpoint rather
+     than shipped as a button that does nothing on desktop.                   */
+  var foldable = window.matchMedia('(max-width: 899px)');
+  var expCards = Array.prototype.slice.call(document.querySelectorAll('[data-exp]'));
+
+  if (expCards.length) {
+    var setOpen = function (card, open) {
+      var head = card.querySelector('.exp-card__head');
+      var sign = card.querySelector('.exp-card__sign');
+      card.classList.toggle('is-open', open);
+      card.classList.toggle('is-folded', !open);
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (sign) sign.textContent = open ? '−' : '+';
+    };
+
+    var openOnly = function (target) {
+      expCards.forEach(function (card) { setOpen(card, card === target); });
+    };
+
+    var onActivate = function (card) {
+      return function () { openOnly(card.classList.contains('is-open') ? null : card); };
+    };
+
+    var applyFolding = function () {
+      expCards.forEach(function (card, i) {
+        var head = card.querySelector('.exp-card__head');
+        if (foldable.matches) {
+          head.setAttribute('role', 'button');
+          head.setAttribute('tabindex', '0');
+          setOpen(card, i === 0);
+        } else {
+          head.removeAttribute('role');
+          head.removeAttribute('tabindex');
+          head.removeAttribute('aria-expanded');
+          card.classList.remove('is-open', 'is-folded');
+        }
+      });
+    };
+
+    expCards.forEach(function (card) {
+      var head = card.querySelector('.exp-card__head');
+      var activate = onActivate(card);
+      head.addEventListener('click', function () { if (foldable.matches) activate(); });
+      head.addEventListener('keydown', function (event) {
+        if (!foldable.matches) return;
+        if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+          event.preventDefault();
+          activate();
+        }
+      });
+    });
+
+    applyFolding();
+    if (foldable.addEventListener) foldable.addEventListener('change', applyFolding);
+    else if (foldable.addListener) foldable.addListener(applyFolding);
+  }
+
   /* --- Leaders rail dots ---------------------------------------------------
      The rail only scrolls when the cards outrun their container — wide desktop
      fits all four — so the dots appear only when there is something to scroll. */

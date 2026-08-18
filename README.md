@@ -64,6 +64,10 @@ Each of these is a deliberate change, listed so it can be reverted:
 - In Knowledge Pillars the section title comes before its image.
 - In Methodology the diagram precedes the copy, and the two supporting
   paragraphs are dropped entirely; both are unchanged on desktop.
+- The three Experience cards fold into tabs: one open at a time, the rest
+  collapsed to a title row. The heading row only takes `role="button"` and
+  keyboard handling below 900px, so desktop keeps plain headings rather than
+  shipping a control that does nothing.
 - The two dark-surface logo copies were flattened by `brightness(0) invert(1)`,
   which would erase the gold compass needle. They now point at a dedicated white
   lockup instead.
