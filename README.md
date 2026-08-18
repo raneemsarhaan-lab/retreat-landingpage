@@ -51,6 +51,13 @@ Each of these is a deliberate change, listed so it can be reverted:
   two arrows. Now that four venue photos exist they drive a real scroll-snap
   carousel: swipeable on touch, buttons wrap around, and a live region announces
   "Photo n of 4".
+- The leaders rail scrolled with no affordance saying so. It now carries
+  position dots, which appear only when the cards actually outrun their
+  container — on a wide desktop all four fit, so the dots stay hidden.
+- The About stats sit on their own centred row rather than tucked into the
+  second split's text column, and the methodology diagram now precedes its
+  supporting copy on mobile (desktop keeps the artboard's copy-left,
+  diagram-right pairing).
 - The two dark-surface logo copies were flattened by `brightness(0) invert(1)`,
   which would erase the gold compass needle. They now point at a dedicated white
   lockup instead.

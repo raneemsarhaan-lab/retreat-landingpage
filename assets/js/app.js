@@ -93,6 +93,60 @@
     });
   });
 
+  /* --- Leaders rail dots ---------------------------------------------------
+     The rail only scrolls when the cards outrun their container — wide desktop
+     fits all four — so the dots appear only when there is something to scroll. */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-dots]'), function (dots) {
+    var rail = dots.parentNode.querySelector('.scroller');
+    if (!rail) return;
+    var cards = Array.prototype.slice.call(rail.children);
+    var buttons = Array.prototype.slice.call(dots.querySelectorAll('.dot'));
+    if (!cards.length || buttons.length !== cards.length) return;
+
+    var origin = function () { return cards[0].offsetLeft; };
+
+    var nearest = function () {
+      var x = rail.scrollLeft + origin();
+      var best = 0, gap = Infinity;
+      cards.forEach(function (card, i) {
+        var d = Math.abs(card.offsetLeft - x);
+        if (d < gap) { gap = d; best = i; }
+      });
+      return best;
+    };
+
+    var mark = function () {
+      var current = nearest();
+      buttons.forEach(function (b, i) {
+        if (i === current) b.setAttribute('aria-current', 'true');
+        else b.removeAttribute('aria-current');
+      });
+    };
+
+    var sync = function () {
+      var scrolls = rail.scrollWidth > rail.clientWidth + 1;
+      dots.hidden = !scrolls;
+      if (scrolls) mark();
+    };
+
+    buttons.forEach(function (button, i) {
+      button.addEventListener('click', function () {
+        rail.scrollTo({
+          left: cards[i].offsetLeft - origin(),
+          behavior: reduceMotion.matches ? 'auto' : 'smooth'
+        });
+      });
+    });
+
+    var tick;
+    rail.addEventListener('scroll', function () {
+      clearTimeout(tick);
+      tick = setTimeout(mark, 120);
+    });
+    window.addEventListener('resize', sync);
+    sync();
+  });
+
   /* --- Venue carousel ------------------------------------------------------
      Buttons move the scroll position; the scroll listener is the single source
      of truth, so swiping and clicking stay consistent.                       */
