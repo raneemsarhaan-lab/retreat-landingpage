@@ -1,23 +1,110 @@
-# retreat-landingpage
+# The Strategy Retreat 2026 — landing page
+
+Static landing page for The Strategy Community's invitation-only retreat
+(15–17 October 2026, Matarma Bay, Ras Sudr).
+
+Open `index.html` directly, or serve the folder:
+
+```bash
+python3 -m http.server 8000   # then http://localhost:8000
+```
+
+No build step, no dependencies. `index.html` + three files under `assets/`.
+
+```
+index.html
+assets/css/tokens.css   design tokens (colours, type, spacing)
+assets/css/styles.css   all layout and component styles
+assets/js/app.js        pillar tabs, FAQ accordion, asset fallbacks
+assets/README.md        which media files are still missing, and where they go
+```
+
+## Source
+
+Implemented from two Claude Design artboards:
+
+- `R_Landing_Page (Mobile).dc.html` — the named target; drives everything below 900px
+- `R_Landing_Page.dc.html` — drives 900px and up
+
+Section order follows the mobile artboard, which is the implement target. The
+two artboards order the back half differently (desktop puts Experience after
+FAQ and drops Partners entirely); mobile's order is used at every width.
+
+## Deviations from the artboards
+
+Each of these is a deliberate change, listed so it can be reverted:
+
+**Fixed**
+- `Regiester` → `Register` on the mobile hero CTA.
+- Footer copyright read `© Forefront Cnsulting Group 2026` (mobile) and
+  `© Forefront Strategy Group 2026` (desktop). Both are now
+  `© Forefront Consulting Group 2026`, matching the body copy's "Powered by
+  Forefront Consulting". **Confirm which entity is correct.**
+- Canvas-editor drag artifacts removed: hard-coded `width: 387px; height: 240px;
+  top: 5px` on the mobile pillar scrim, `width: 1085px; margin-top: -246px;
+  top: -167px` on the desktop methodology block, and `height: 163px` on the
+  mobile footer (which clipped its own contents). All are now flow layout.
+- Mobile hero CTA was 42px tall and the pillar tabs 32px; both now meet the
+  44px minimum touch target. The tabs keep their exact visual position — the
+  extra hit area is padding pulled back by a negative margin.
+- The accommodation image carried prev/next buttons with only one image behind
+  them. Dropped rather than shipped inert.
+
+**Content parity.** The mobile artboard trims copy the desktop one carries: the
+five "Reflect / Learn / Return / Rewind / Reconnect" outcomes, the fuller FAQ
+answers, and the fuller accommodation details. The longer text is used at every
+width instead of hiding content on small screens. To restore the mobile trim,
+hide `.outcomes` below 900px.
+
+**Links.** Artboard links point at sibling `.dc.html` artboards. Navigation that
+has a matching section on this page resolves to an in-page anchor; the rest
+point at pages that do not exist yet: `registration.html`,
+`speaker-information.html`, `privacy.html`, `contact.html`.
+
+## Reconstructed values
+
+Two things the artboards reference but that were not delivered with them:
+
+- **Design tokens.** The artboards link
+  `_ds/the-strategy-community-design-system-…/tokens/*.css`. Those files were
+  unavailable, so `assets/css/tokens.css` reconstructs them from literal colours
+  that sit next to the token names in the markup (`#F5AE2B` beside
+  `var(--gold-500)`, `#0F2C69` beside `var(--navy-900)`), with neutrals chosen
+  to clear WCAG AA. `--gold-600` was darkened to #8F6208 for 5.04:1 on the FAQ
+  panel background. **Replace this file wholesale when the real tokens arrive** —
+  nothing else in the CSS hard-codes a colour.
+- **Fonts.** `--font-display` / `--font-body` name no family in the artboards.
+  Archivo (display) and Inter (body) stand in via Google Fonts, chosen because
+  they cover the 500/700/900 weights the artboards use. Swap both in
+  `tokens.css`.
+
+Media assets are still missing — see `assets/README.md` for the full list and
+what each slot expects. The page degrades to tinted wells and alt text rather
+than broken-image icons.
+
+## Verified
+
+Rendered in headless Chromium at 375 / 768 / 1440px: no horizontal page scroll,
+no console or page errors, heading scale matches the artboards at each
+breakpoint. Automated checks cover the pillar tablist (click, arrow/Home/End
+keys, roving tabindex, `aria-selected`, panel labelling), the FAQ accordion
+(exclusive open, toggle closed, `aria-expanded`), 44px minimum touch targets,
+and that `prefers-reduced-motion` stops the marquee.
+
+Not verified here: video playback. The container's Chromium is the Playwright
+build, which has no H.264 decoder, so the two delivered MP4s cannot render in
+this environment. Both are valid `ftypisom` MP4s and play in normal browsers.
 
 ## Skills
 
-This repository bundles the [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
-Claude Code skill at `.claude/skills/ui-ux-pro-max/` (MIT, v2.13.0). It provides a searchable
-local database of UI styles, palettes, font pairings, UX guidelines, icons, GSAP presets,
-chart types, and per-stack implementation guidance.
-
-Query it from the repository root (requires Python 3.x, no external dependencies):
+`.claude/skills/ui-ux-pro-max/` bundles the
+[UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) skill
+(MIT, v2.13.0) — a searchable local database of styles, palettes, font pairings,
+UX guidelines and per-stack guidance.
 
 ```bash
-# Full design system for a new page/project
-python3 .claude/skills/ui-ux-pro-max/scripts/search.py "wellness retreat booking" --design-system -p "Retreat"
-
-# Focused lookup
 python3 .claude/skills/ui-ux-pro-max/scripts/search.py "focus visible keyboard" --domain ux
-
-# Stack-specific guidance
 python3 .claude/skills/ui-ux-pro-max/scripts/search.py "responsive layout" --stack html-tailwind
 ```
 
-See `.claude/skills/ui-ux-pro-max/SKILL.md` for the full workflow and domain list.
+See `.claude/skills/ui-ux-pro-max/SKILL.md` for the full workflow.
