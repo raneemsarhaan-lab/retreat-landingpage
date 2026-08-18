@@ -93,6 +93,36 @@
     });
   });
 
+  /* --- Venue carousel ------------------------------------------------------
+     Buttons move the scroll position; the scroll listener is the single source
+     of truth, so swiping and clicking stay consistent.                       */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-carousel]'), function (carousel) {
+    var track = carousel.querySelector('.carousel__track');
+    var status = carousel.querySelector('[data-carousel-status]');
+    var slides = track ? track.children.length : 0;
+    if (!track || slides < 2) return;
+
+    var indexOfCurrent = function () {
+      return Math.round(track.scrollLeft / track.clientWidth);
+    };
+
+    var go = function (step) {
+      var next = (indexOfCurrent() + step + slides) % slides;
+      track.scrollTo({ left: next * track.clientWidth, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    };
+
+    carousel.querySelector('[data-carousel-prev]').addEventListener('click', function () { go(-1); });
+    carousel.querySelector('[data-carousel-next]').addEventListener('click', function () { go(1); });
+
+    var tick;
+    track.addEventListener('scroll', function () {
+      clearTimeout(tick);
+      tick = setTimeout(function () {
+        if (status) status.textContent = 'Photo ' + (indexOfCurrent() + 1) + ' of ' + slides;
+      }, 120);
+    });
+  });
+
   /* --- Missing assets -----------------------------------------------------
      Photography, logos and three of the six clips were not delivered with the
      design (see assets/README.md). Rather than render broken-image glyphs, drop

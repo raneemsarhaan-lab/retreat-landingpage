@@ -47,14 +47,21 @@ Each of these is a deliberate change, listed so it can be reverted:
 - Mobile hero CTA was 42px tall and the pillar tabs 32px; both now meet the
   44px minimum touch target. The tabs keep their exact visual position — the
   extra hit area is padding pulled back by a negative margin.
-- The accommodation image carried prev/next buttons with only one image behind
-  them. Dropped rather than shipped inert.
+- The accommodation prev/next buttons were inert in the artboards — one image,
+  two arrows. Now that four venue photos exist they drive a real scroll-snap
+  carousel: swipeable on touch, buttons wrap around, and a live region announces
+  "Photo n of 4".
+- The two dark-surface logo copies were flattened by `brightness(0) invert(1)`,
+  which would erase the gold compass needle. They now point at a dedicated white
+  lockup instead.
 
-**Content parity.** The mobile artboard trims copy the desktop one carries: the
-five "Reflect / Learn / Return / Rewind / Reconnect" outcomes, the fuller FAQ
-answers, and the fuller accommodation details. The longer text is used at every
-width instead of hiding content on small screens. To restore the mobile trim,
-hide `.outcomes` below 900px.
+**Breakpoint rules.** Per the confirmed rule set, mobile and desktop differ in
+content, not only layout: the hero headline is "The / Strategy / Retreat"
+stacked below 900px and "Step Away. Think Strategically." above it; the
+five-point pillars intro list is desktop-only; and the footer collapses to the
+brand blurb plus the copyright line, dropping its three link columns. The fuller
+FAQ answers and accommodation details from the desktop artboard are used at
+every width.
 
 **Links.** Artboard links point at sibling `.dc.html` artboards. Navigation that
 has a matching section on this page resolves to an in-page anchor; the rest
@@ -78,9 +85,10 @@ Two things the artboards reference but that were not delivered with them:
   they cover the 500/700/900 weights the artboards use. Swap both in
   `tokens.css`.
 
-Media assets are still missing — see `assets/README.md` for the full list and
-what each slot expects. The page degrades to tinted wells and alt text rather
-than broken-image icons.
+All video and venue photography is in place. Three photo slots had no filename
+match in the archives and were assigned by subject — those, and the handful of
+assets still outstanding (both logo lockups, the partner logos, the delegate
+cutout), are listed in `assets/README.md`.
 
 ## Verified
 
@@ -91,9 +99,12 @@ keys, roving tabindex, `aria-selected`, panel labelling), the FAQ accordion
 (exclusive open, toggle closed, `aria-expanded`), 44px minimum touch targets,
 and that `prefers-reduced-motion` stops the marquee.
 
+The venue carousel is covered too: next/prev, wraparound, the live-region
+count, and 44px buttons.
+
 Not verified here: video playback. The container's Chromium is the Playwright
-build, which has no H.264 decoder, so the two delivered MP4s cannot render in
-this environment. Both are valid `ftypisom` MP4s and play in normal browsers.
+build, which has no H.264 decoder, so none of the six MP4s can render in this
+environment. All are valid `ftypisom` files and play in normal browsers.
 
 ## Skills
 

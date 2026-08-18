@@ -28,7 +28,7 @@
   <!-- Mobile bar -->
   <div class="hero__bar">
     <a href="#main" aria-label="The Strategy Community — home">
-      <img class="brand-mark brand-mark--inverted" src="assets/strategy-community-mark.png" alt="The Strategy Community" data-fallback loading="lazy" decoding="async">
+      <img class="brand-mark" src="assets/strategy-community-mark-white.png" alt="The Strategy Community" data-fallback loading="lazy" decoding="async">
     </a>
     <a class="btn btn--primary" href="registration.html">Register</a>
   </div>
@@ -37,7 +37,7 @@
   <div class="hero__nav">
     <div class="hero__nav-group">
       <a href="#main" aria-label="The Strategy Community — home">
-        <img class="brand-mark brand-mark--inverted" src="assets/strategy-community-mark.png" alt="The Strategy Community" data-fallback loading="lazy" decoding="async">
+        <img class="brand-mark" src="assets/strategy-community-mark-white.png" alt="The Strategy Community" data-fallback loading="lazy" decoding="async">
       </a>
       <nav aria-label="Primary">
         <a href="#about">Our Purpose</a>
@@ -57,7 +57,7 @@
 
   <div class="hero__copy">
     <p class="hero__kicker">An exclusive invite-only retreat</p>
-    <h1 class="hero__title">Step Away. Think Strategically.</h1>
+    <h1 class="hero__title"><span class="hero__title-sm">The<br>Strategy<br>Retreat</span><span class="hero__title-lg">Step Away. Think Strategically.</span></h1>
     <p class="hero__meta">
       <span class="hero__meta-icon" aria-hidden="true">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10131a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
@@ -133,7 +133,7 @@
           <h3 class="display">Three days. One continuous conversation.</h3>
           <p class="lede">The retreat is a curated gathering designed for CEOs, Managing Directors, top-level consultants, and seasoned professionals involved in strategic decision-making.</p>
         </div>
-        <div class="media"><img src="assets/photos/retreat-wide-6.png" alt="" data-fallback loading="lazy" decoding="async"></div>
+        <div class="media"><img src="assets/photos/retreat-wide-6.png" srcset="assets/photos/retreat-wide-6.small.png 640w, assets/photos/retreat-wide-6.png 882w" sizes="(min-width: 900px) 45vw, 45vw" alt="" data-fallback loading="lazy" decoding="async"></div>
       </div>
 
       <div class="split split--center split--tall">
@@ -328,7 +328,19 @@
   <div class="shell rail">
     <h2 class="eyebrow rail__label" id="venue-title">Accommo&shy;dation</h2>
     <div class="venue__grid">
-      <div class="media venue__media"><img src="assets/venue/venue-2.png" alt="The retreat venue at Matarma Bay, Ras Sudr" data-fallback loading="lazy" decoding="async"></div>
+      <div class="media venue__media carousel" data-carousel>
+        <div class="carousel__track" tabindex="0" role="group" aria-label="Venue photos, scrollable">
+          <img src="assets/venue/venue-1.png" alt="The retreat venue at Matarma Bay, Ras Sudr" data-fallback loading="lazy" decoding="async">
+          <img src="assets/venue/venue-2.png" alt="Guest accommodation at the venue" data-fallback loading="lazy" decoding="async">
+          <img src="assets/venue/venue-3.png" alt="The shoreline at Matarma Bay" data-fallback loading="lazy" decoding="async">
+          <img src="assets/venue/venue-4.png" alt="Communal space at the venue" data-fallback loading="lazy" decoding="async">
+        </div>
+        <div class="carousel__nav">
+          <button class="carousel__btn" type="button" data-carousel-prev aria-label="Previous photo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 18l-6-6 6-6"></path></svg></button>
+          <button class="carousel__btn" type="button" data-carousel-next aria-label="Next photo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></button>
+        </div>
+        <p class="visually-hidden" aria-live="polite" data-carousel-status>Photo 1 of 4</p>
+      </div>
       <div class="venue__body">
         <h3 class="display">Two nights, three days</h3>
         <dl class="facts">
@@ -408,7 +420,7 @@
       </div>
       <p class="footer__blurb">Egypt's invitation-only community of strategy practitioners. Powered by Forefront Consulting.</p>
     </div>
-    <div>
+    <div class="footer__col">
       <p class="footer__heading">The retreat</p>
       <nav class="footer__links" aria-label="The retreat">
         <a href="#about">Our Purpose</a>
@@ -416,14 +428,14 @@
         <a href="#delegates">Leaders</a>
       </nav>
     </div>
-    <div>
+    <div class="footer__col">
       <p class="footer__heading">Register</p>
       <nav class="footer__links" aria-label="Register">
         <a href="registration.html">Attendee registration</a>
         <a href="speaker-information.html">Speaker information</a>
       </nav>
     </div>
-    <div>
+    <div class="footer__col">
       <p class="footer__heading">Details</p>
       <div class="footer__links">
         <span>15–17 October 2026</span>

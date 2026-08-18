@@ -38,6 +38,17 @@ button { font: inherit; color: inherit; }
 
 .dark-surface :focus-visible { outline-color: var(--white); }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .skip-link {
   position: absolute;
   left: var(--space-4);
@@ -193,7 +204,6 @@ button { font: inherit; color: inherit; }
 .hero__bar .btn { min-height: 44px; padding-inline: var(--space-4); font-size: .875rem; }
 
 .brand-mark { height: 26px; width: auto; }
-.brand-mark--inverted { filter: brightness(0) invert(1); }
 
 /* Desktop floating nav */
 .hero__nav { display: none; }
@@ -257,6 +267,8 @@ button { font: inherit; color: inherit; }
   text-shadow: 0 2px 20px rgba(8,12,22,.55);
   text-wrap: balance;
 }
+
+.hero__title-lg { display: none; }
 
 .hero__meta {
   align-self: flex-start;
@@ -417,7 +429,7 @@ button { font: inherit; color: inherit; }
 .pillars__intro .display { font-size: 1.375rem; }
 
 .outcomes {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: var(--space-4);
   margin-top: var(--space-5);
@@ -672,6 +684,46 @@ button { font: inherit; color: inherit; }
    Accommodation
    ========================================================================= */
 .venue__media { aspect-ratio: 4 / 3; margin-bottom: var(--space-6); }
+
+/* Venue carousel: a scroll-snap track, so touch swipes and the buttons drive
+   the same scroll position and nothing needs to stay in sync. */
+.carousel__track {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.carousel__track::-webkit-scrollbar { display: none; }
+.carousel__track > img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: center;
+}
+.carousel__nav {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  display: flex;
+  gap: var(--space-3);
+}
+.carousel__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .92);
+  color: var(--navy-900);
+  cursor: pointer;
+  transition: background-color var(--dur-base) var(--ease);
+}
+.carousel__btn:hover { background: var(--white); }
 .venue__body .display { margin-bottom: var(--space-5); font-size: 1.5rem; }
 .facts {
   display: grid;
@@ -773,6 +825,8 @@ button { font: inherit; color: inherit; }
   gap: var(--space-8);
   padding-block: var(--space-12) var(--space-8);
 }
+.footer__col { display: none; }
+
 .footer__brand { display: flex; align-items: center; gap: var(--space-3); margin-bottom: 14px; }
 .footer__brand img { height: 30px; width: auto; }
 .footer__brand span {
@@ -854,6 +908,8 @@ button { font: inherit; color: inherit; }
 
   .hero__copy { padding: 167px var(--space-12) 118px 56px; }
   .hero__kicker { margin-bottom: 26px; font-size: .875rem; letter-spacing: .26em; }
+  .hero__title-sm { display: none; }
+  .hero__title-lg { display: inline; }
   .hero__title { max-width: 980px; font-size: clamp(3.5rem, 6vw, 5.25rem); line-height: 1.05; letter-spacing: -.02em; }
   .hero__meta { gap: 22px; margin-top: 42px; padding: var(--space-4); border-radius: var(--radius-xl); }
   .hero__meta-icon { width: 72px; height: 72px; border-radius: 12px; }
@@ -913,6 +969,7 @@ button { font: inherit; color: inherit; }
   .pillars__intro .media { height: 280px; margin-bottom: 0; border-radius: var(--radius-2xl); }
   .pillars__intro .display { font-size: clamp(1.5rem, 2.6vw, 2.125rem); }
 
+  .outcomes { display: flex; }
   .tabs { gap: var(--space-8); margin: 0 0 var(--space-10); }
   .tab { padding-bottom: var(--space-4); font-size: .8125rem; letter-spacing: .06em; }
   .tab__short { display: none; }
@@ -984,6 +1041,7 @@ button { font: inherit; color: inherit; }
   .cta .btn { min-height: 56px; padding-inline: 30px; font-size: 1rem; border-radius: 12px; }
 
   .footer__top { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-10); padding-block: 72px var(--space-10); }
+  .footer__col { display: block; }
   .footer__brand img { height: 34px; }
   .footer__brand span { font-size: .9375rem; }
   .footer__blurb { max-width: 280px; font-size: .9375rem; line-height: 1.7; }
@@ -1001,5 +1059,6 @@ button { font: inherit; color: inherit; }
     scroll-behavior: auto !important;
   }
   .marquee__track { animation: none; }
-  .scroller { scroll-snap-type: none; }
+  .scroller,
+  .carousel__track { scroll-snap-type: none; scroll-behavior: auto; }
 }
