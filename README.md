@@ -63,6 +63,15 @@ Each of these is a deliberate change, listed so it can be reverted:
   scroll. Desktop content takes a wider right gutter so nothing runs under it —
   the knowledge tabs did before that was added.
 - The knowledge tabs are spaced `space-between` so the row fills its column.
+- Section rhythm is compressed: the 100px block padding drops to 48px and the
+  media heights and internal gaps come down with it, taking the page from
+  7,855px to ~6,530px at 1440x900. Most sections now sit at 0.7-0.85x the
+  viewport; Knowledge Pillars stays at 0.95x because its five-point list makes
+  the content taller than 3/4 screen on its own.
+- Experience is rebuilt as "Hear it from those who were there": an intro beside
+  the feature film, then a rail of testimonial films with click-to-play controls
+  and position dots. The rail carries any number of films — dots are generated
+  from the card count and the row scrolls past three.
 
 **Mobile-only revisions.** Requested after the artboards, and scoped below
 900px — desktop keeps the artboard arrangement in every case:

@@ -44,6 +44,15 @@ The last three had no filename match in the archives and were chosen by looking
 at each image against the slot's copy. **Worth a review** — swapping any of them
 is a one-line change.
 
+## Testimonial films
+
+The Experience rail currently reuses `knowledge-sharing.mp4`,
+`mindful-connection.mp4` and `business-case-studies-2.mp4` as stand-ins. The
+quotes and attributions (Ahmed Hassan, Mariam Ali, Omar Khalil) come from the
+supplied reference and read as placeholders — **confirm the real names, roles
+and clips before launch.** Adding films needs no code change: drop another
+`<li class="quote vplayer">` into `.quotes` and the dots follow.
+
 ## Still needed
 
 | Path | Used by | Note |
@@ -68,6 +77,15 @@ clean at the sizes used (34–52px tall) and its aspect ratio matches the one
 supplied vector-clean lockup to within 0.2%, so nothing is cropped off. Even so,
 **replace both with the original PNG or SVG exports when you can**: these top out
 at screen resolution and will not scale up.
+
+## Testimonial films
+
+The Experience rail currently reuses `knowledge-sharing.mp4`,
+`mindful-connection.mp4` and `business-case-studies-2.mp4` as stand-ins. The
+quotes and attributions (Ahmed Hassan, Mariam Ali, Omar Khalil) come from the
+supplied reference and read as placeholders — **confirm the real names, roles
+and clips before launch.** Adding films needs no code change: drop another
+`<li class="quote vplayer">` into `.quotes` and the dots follow.
 
 ## Still needed
 

@@ -84,7 +84,7 @@
 @media (min-width: 900px) {
   :root {
     --gutter: var(--space-12);
-    --section-y: var(--space-25);
+    --section-y: var(--space-12);
     --marquee-duration: 44s;
   }
 }

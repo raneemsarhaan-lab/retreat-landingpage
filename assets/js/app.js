@@ -93,64 +93,41 @@
     });
   });
 
-  /* --- Experience: folded tabs on mobile -----------------------------------
-     The heading row only becomes a control below 900px, so the role and its
-     keyboard handling are applied and withdrawn with the breakpoint rather
-     than shipped as a button that does nothing on desktop.                   */
-  var foldable = window.matchMedia('(max-width: 899px)');
-  var expCards = Array.prototype.slice.call(document.querySelectorAll('[data-exp]'));
+  /* --- Click-to-play films ------------------------------------------------
+     The reference calls for a play affordance rather than ambient looping, so
+     these start muted and paused, and play with sound on click. One at a time. */
+  var players = Array.prototype.slice.call(document.querySelectorAll('.vplayer'));
 
-  if (expCards.length) {
-    var setOpen = function (card, open) {
-      var head = card.querySelector('.exp-card__head');
-      var sign = card.querySelector('.exp-card__sign');
-      card.classList.toggle('is-open', open);
-      card.classList.toggle('is-folded', !open);
-      head.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (sign) sign.textContent = open ? '−' : '+';
+  players.forEach(function (player) {
+    var video = player.querySelector('video');
+    var button = player.querySelector('.vplay');
+    if (!video || !button) return;
+
+    var stop = function () {
+      video.pause();
+      video.muted = true;
+      player.classList.remove('is-playing');
     };
 
-    var openOnly = function (target) {
-      expCards.forEach(function (card) { setOpen(card, card === target); });
-    };
-
-    var onActivate = function (card) {
-      return function () { openOnly(card.classList.contains('is-open') ? null : card); };
-    };
-
-    var applyFolding = function () {
-      expCards.forEach(function (card, i) {
-        var head = card.querySelector('.exp-card__head');
-        if (foldable.matches) {
-          head.setAttribute('role', 'button');
-          head.setAttribute('tabindex', '0');
-          setOpen(card, i === 0);
-        } else {
-          head.removeAttribute('role');
-          head.removeAttribute('tabindex');
-          head.removeAttribute('aria-expanded');
-          card.classList.remove('is-open', 'is-folded');
+    button.addEventListener('click', function () {
+      players.forEach(function (other) {
+        if (other !== player) {
+          var v = other.querySelector('video');
+          if (v) { v.pause(); v.muted = true; }
+          other.classList.remove('is-playing');
         }
       });
-    };
-
-    expCards.forEach(function (card) {
-      var head = card.querySelector('.exp-card__head');
-      var activate = onActivate(card);
-      head.addEventListener('click', function () { if (foldable.matches) activate(); });
-      head.addEventListener('keydown', function (event) {
-        if (!foldable.matches) return;
-        if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
-          event.preventDefault();
-          activate();
-        }
-      });
+      video.muted = false;
+      player.classList.add('is-playing');
+      var attempt = video.play();
+      if (attempt && attempt.catch) attempt.catch(function () { stop(); });
     });
 
-    applyFolding();
-    if (foldable.addEventListener) foldable.addEventListener('change', applyFolding);
-    else if (foldable.addListener) foldable.addListener(applyFolding);
-  }
+    video.addEventListener('ended', stop);
+    video.addEventListener('error', function () { button.hidden = true; });
+    // Clicking the film itself pauses and restores the caption.
+    video.addEventListener('click', function () { if (!video.paused) stop(); });
+  });
 
   /* --- Leaders rail dots ---------------------------------------------------
      The rail only scrolls when the cards outrun their container — wide desktop
@@ -160,38 +137,50 @@
     if (!rail) return;
     var cards = Array.prototype.slice.call(rail.children);
     var buttons = Array.prototype.slice.call(dots.querySelectorAll('.dot'));
-    if (!cards.length || buttons.length !== cards.length) return;
 
-    var origin = function () { return cards[0].offsetLeft; };
-
-    var nearest = function () {
-      var x = rail.scrollLeft + origin();
-      var best = 0, gap = Infinity;
+    // An empty container generates one dot per card, so adding films to the
+    // rail keeps the dots in step without touching the markup.
+    if (!buttons.length && cards.length) {
+      var label = dots.getAttribute('data-dots-label') || 'Go to item';
       cards.forEach(function (card, i) {
-        var d = Math.abs(card.offsetLeft - x);
-        if (d < gap) { gap = d; best = i; }
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', label + ' ' + (i + 1));
+        dots.appendChild(dot);
       });
-      return best;
+      buttons = Array.prototype.slice.call(dots.querySelectorAll('.dot'));
+    }
+
+    if (!cards.length || buttons.length !== cards.length) return;
+    dots.hidden = false;
+
+    // Map dots onto scroll *progress*, not card offsets. A rail whose overflow
+    // is smaller than its trailing cards can never bring those cards to the
+    // left edge, which left the last dots permanently unreachable.
+    var travel = function () { return rail.scrollWidth - rail.clientWidth; };
+    var lastIndex = buttons.length - 1;
+
+    var currentIndex = function () {
+      var max = travel();
+      if (max <= 1) return 0;
+      return Math.round((rail.scrollLeft / max) * lastIndex);
     };
 
     var mark = function () {
-      var current = nearest();
+      var current = currentIndex();
       buttons.forEach(function (b, i) {
         if (i === current) b.setAttribute('aria-current', 'true');
         else b.removeAttribute('aria-current');
       });
     };
 
-    var sync = function () {
-      var scrolls = rail.scrollWidth > rail.clientWidth + 1;
-      dots.hidden = !scrolls;
-      if (scrolls) mark();
-    };
-
     buttons.forEach(function (button, i) {
       button.addEventListener('click', function () {
+        var max = travel();
+        if (max <= 1) return;
         rail.scrollTo({
-          left: cards[i].offsetLeft - origin(),
+          left: (i / lastIndex) * max,
           behavior: reduceMotion.matches ? 'auto' : 'smooth'
         });
       });
@@ -202,8 +191,8 @@
       clearTimeout(tick);
       tick = setTimeout(mark, 120);
     });
-    window.addEventListener('resize', sync);
-    sync();
+    window.addEventListener('resize', mark);
+    mark();
   });
 
   /* --- Venue carousel ------------------------------------------------------
