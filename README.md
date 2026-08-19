@@ -113,6 +113,17 @@ has a matching section on this page resolves to an in-page anchor; the rest
 point at pages that do not exist yet: `registration.html`,
 `speaker-information.html`, `privacy.html`, `contact.html`.
 
+## Content inventory
+
+`content-inventory.csv` lists every piece of copy and every image, video and
+document the page asks for — 142 rows across the 13 blocks, with the live text,
+the length or dimension each slot expects, a status, and the action needed. It
+is generated from the rendered page and the files on disk, so the "current
+content" column is what actually ships rather than a transcription. Open it in
+Excel or Sheets and filter the Status column to see what is outstanding.
+
+Regenerate it after content changes rather than editing it by hand.
+
 ## Reconstructed values
 
 Two things the artboards reference but that were not delivered with them:

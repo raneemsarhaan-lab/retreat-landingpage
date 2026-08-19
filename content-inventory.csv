@@ -1,0 +1,143 @@
+﻿#,Section,Element,Type,Shown on,Current content / file,Guidance & constraints,Status,Action for content team
+1,Global / Nav,Nav link 1,Link,Desktop,Our Purpose,One or two words,Live,Points to the About block
+1,Global / Nav,Nav link 2,Link,Desktop,Experience,One or two words,Live,Points to the Experience block
+1,Global / Nav,Nav link 3,Link,Desktop,Leaders,One or two words,Live,Points to the Delegates block
+1,Global / Nav,Download PDF,CTA,Both,Download PDF,Short label,BLOCKED — file missing,Supply assets/the-strategy-retreat-2026.pdf; link is wired and will 404 until then
+1,Global / Nav,Register button,CTA,Both,Register,Short label,BLOCKED — page missing,"Links to registration.html, which has not been built"
+1,Global / Nav,Floating Register tab,CTA,Desktop,Register,"Vertical tab, right edge",Live,
+1,Global / Nav,Brand mark (dark backgrounds),Image,Both,assets/strategy-community-mark-white.png (250x394),"Mark only, transparent PNG, drawn 32-34px tall",OK,Replace with the original export — current file was recovered from a screenshot and has no gold needle
+1,Global / Footer,Brand lockup (light backgrounds),Image,Both,assets/strategy-community-lockup.png (1170x397),"Full navy lockup, transparent PNG, drawn 44-52px tall",OK,Replace with the original export — recovered from a screenshot
+2,Hero,Eyebrow,Text,Both,An exclusive invite-only retreat,"Max ~40 characters, uppercase",Live,
+2,Hero,Headline,Heading,Both,The Strategy Retreat,"2-3 words. Stacks on 3 lines on mobile, 1 line on desktop",Live,
+2,Hero,Date,Text,Both,15–17 October 2026,Keep the en dash,Live,
+2,Hero,Location,Text,Both,"Matarma Bay, Ras Sudr",Short place name,Live,
+2,Hero,Marquee word,Decorative,Both,Strategy,"Single word, repeats across the bottom edge",Live,
+2,Hero,Background photograph,Image,Both,assets/photos/hero-d.png (640x426),"Full-bleed. Subject should sit right of centre — mobile crops to 72% across | Currently 640px wide, drawn at 1440px — needs ~2880px for retina",Low resolution,"HIGHEST PRIORITY: supply the full-size original, 1920px wide or more"
+3,Delegates,Side label,Label,Both,Delegates,One or two words,Review,"Nav calls this block ""Leaders"" — align the wording if you prefer"
+3,Delegates,Heading,Heading,Both,The leaders in the room,Max ~30 characters,Live,
+3,Delegates,Intro,Body,Both,"Meet the CEOs, founders, and strategy leaders shaping the scene in Egypt.","1 sentence, max ~90 characters",Live,
+3,Delegates,Card 1 — role,Label,Both,Managing Director,1-3 words,Live,
+3,Delegates,Card 1 — name,Text,Both,Ahmed Badr,"Full name, sets in uppercase",Live,
+3,Delegates,Card 1 — company,Text,Both,AB & Associates Middle East,Max ~35 characters,Live,
+3,Delegates,Card 2 — role,Label,Both,Managing Director,1-3 words,Live,
+3,Delegates,Card 2 — name,Text,Both,Islam Saadany,"Full name, sets in uppercase",Live,
+3,Delegates,Card 2 — company,Text,Both,Forefront Consulting,Max ~35 characters,Live,
+3,Delegates,Card 3 — role,Label,Both,Chairman,1-3 words,Live,
+3,Delegates,Card 3 — name,Text,Both,Ahmed Sherien Korayem,"Full name, sets in uppercase",Live,
+3,Delegates,Card 3 — company,Text,Both,Sugar Delta,Max ~35 characters,Live,
+3,Delegates,Card 4 — role,Label,Both,CEO,1-3 words,Live,
+3,Delegates,Card 4 — name,Text,Both,Ahmed Bayoumi,"Full name, sets in uppercase",Live,
+3,Delegates,Card 4 — company,Text,Both,Wadi Group — Industrial Section,Max ~35 characters,Live,
+3,Delegates,Card 1 portrait (Ahmed Badr),Image,Both,assets/cutout-badr.png (not in repo),"Cut-out portrait on transparent ground, 3:4",MISSING — supply file,Supply cut-out at 600x800 or larger
+3,Delegates,Card 2-4 portraits,Image,Both,none — no file referenced,"Cut-out portraits on transparent ground, 3:4, 600x800+",MISSING — supply files,Cards render as flat wells until supplied. Name them cutout-<surname>.png
+3,Delegates,More delegates,Structure,Both,4 cards,The rail scrolls and the dots follow the count automatically,Ready to extend,"Send extra names, roles, companies and portraits in the same format"
+4,About,Side label,Label,Both,About,One word,Live,
+4,About,Sub-section 1 — heading,Heading,Both,Three days. One continuous conversation.,Max ~55 characters,Live,
+4,About,Sub-section 1 — body,Body,Both,"The retreat is a curated gathering designed for CEOs, Managing Directors, top-level consultants, and seasoned professionals involved in strategic decision-making.",Drives the photo height on desktop — longer copy makes the photo taller,Live,
+4,About,Sub-section 2 — heading,Heading,Both,Real-world knowledge. Stronger connections. Strategic growth,Max ~55 characters,Live,
+4,About,Sub-section 2 — body,Body,Both,"Not a conference and not a lecture. Every speaker is a strategist, every discussion turns into a lesson drawn from real business challenges, and the mix of industries makes it both diverse and eye-opening.",Drives the photo height on desktop — longer copy makes the photo taller,Live,
+4,About,Sub-section 1 photograph,Image,Both,assets/photos/retreat-wide-6.png (882x387),"Landscape, height follows the copy beside it | Currently 882px wide, drawn at 529px — needs ~1058px for retina",Low resolution,Resupply at 1058px wide or more
+4,About,Sub-section 2 photograph,Image,Both,assets/photos/three-days-night.png (640x512),"Landscape, height follows the copy beside it | Currently 640px wide, drawn at 529px — needs ~1058px for retina",Low resolution,Resupply at 1058px wide or more
+4,About,Stat — Leaders,Text,Both,60+,Short number or figure,Review,Confirm the 2026 figures
+4,About,Stat — Sessions,Text,Both,15,Short number or figure,Review,Confirm the 2026 figures
+4,About,Stat — Panel,Text,Both,1,Short number or figure,Review,Confirm the 2026 figures
+5,Knowledge Pillars,Side label,Label,Both,Knowledge Pillars,One or two words,Live,
+5,Knowledge Pillars,Heading,Heading,Both,Strategy turns from theory into shared practice.,Max ~55 characters,Live,
+5,Knowledge Pillars,Outcome bullet 1,Body,Desktop only,Reflect on their strategic direction with structure and guidance.,"1 line, max ~85 characters",Live,Hidden on mobile by design
+5,Knowledge Pillars,Outcome bullet 2,Body,Desktop only,Learn from real cases and peer discussions across industries.,"1 line, max ~85 characters",Live,Hidden on mobile by design
+5,Knowledge Pillars,Outcome bullet 3,Body,Desktop only,Return with practical tools and a clearer path for execution.,"1 line, max ~85 characters",Live,Hidden on mobile by design
+5,Knowledge Pillars,Outcome bullet 4,Body,Desktop only,Rewind and recharge — the value of slowing down and rediscovering energy.,"1 line, max ~85 characters",Live,Hidden on mobile by design
+5,Knowledge Pillars,Outcome bullet 5,Body,Desktop only,"Reconnect with curiosity and playfulness, doing things they haven't done in years.","1 line, max ~85 characters",Live,Hidden on mobile by design
+5,Knowledge Pillars,Intro photograph,Image,Both,assets/photos/retreat-4x3-3.png (640x414),"Landscape, drawn ~196px tall | Currently 640px wide, drawn at 529px — needs ~1058px for retina",Low resolution,Resupply at 1058px wide or more
+5,Knowledge Pillars,Tab 1 — full label,Label,Desktop,Strategy Knowledge,Max ~26 characters — longer labels wrap to two lines below 1300px,Live,
+5,Knowledge Pillars,Tab 1 — short label,Label,Mobile,Strategy,Max ~12 characters,Live,
+5,Knowledge Pillars,Tab 2 — full label,Label,Desktop,Business Case Studies,Max ~26 characters — longer labels wrap to two lines below 1300px,Live,
+5,Knowledge Pillars,Tab 2 — short label,Label,Mobile,Case Studies,Max ~12 characters,Live,
+5,Knowledge Pillars,Tab 3 — full label,Label,Desktop,Leadership Awareness,Max ~26 characters — longer labels wrap to two lines below 1300px,Live,
+5,Knowledge Pillars,Tab 3 — short label,Label,Mobile,Leadership,Max ~12 characters,Live,
+5,Knowledge Pillars,Tab 4 — full label,Label,Desktop,Strategic Essential Skills,Max ~26 characters — longer labels wrap to two lines below 1300px,Live,
+5,Knowledge Pillars,Tab 4 — short label,Label,Mobile,Skills,Max ~12 characters,Live,
+5,Knowledge Pillars,Panel 01 — title,Heading,Both,Strategy Knowledge,Max ~28 characters,Live,
+5,Knowledge Pillars,Panel 01 — description,Body,Both,(see index.html),"2 lines, max ~120 characters",Live,
+5,Knowledge Pillars,Panel 01 — media,Image,Both,assets/photos/mt-workshop.png (631x418),"Landscape 2:1 on desktop | Currently 631px wide, drawn at 1440px — needs ~2880px for retina",Low resolution,Resupply at 2880px wide or more
+5,Knowledge Pillars,Panel 02 — title,Heading,Both,Business Case Studies,Max ~28 characters,Live,
+5,Knowledge Pillars,Panel 02 — description,Body,Both,(see index.html),"2 lines, max ~120 characters",Live,
+5,Knowledge Pillars,Panel 02 — media,Video,Both,assets/video/business-case-studies.mp4 (720x1280),Landscape 2:1 on desktop,OK,
+5,Knowledge Pillars,Panel 03 — title,Heading,Both,Leadership Awareness,Max ~28 characters,Live,
+5,Knowledge Pillars,Panel 03 — description,Body,Both,(see index.html),"2 lines, max ~120 characters",Live,
+5,Knowledge Pillars,Panel 03 — media,Image,Both,assets/photos/retreat-4x3-2.png (640x427),"Landscape 2:1 on desktop | Currently 640px wide, drawn at 583px — needs ~1166px for retina",Low resolution,Resupply at 1166px wide or more
+5,Knowledge Pillars,Panel 04 — title,Heading,Both,Strategic Essential Skills,Max ~28 characters,Live,
+5,Knowledge Pillars,Panel 04 — description,Body,Both,(see index.html),"2 lines, max ~120 characters",Live,
+5,Knowledge Pillars,Panel 04 — media,Image,Both,assets/photos/retreat-wide-4.png (1128x537),"Landscape 2:1 on desktop | Currently 1128px wide, drawn at 583px — needs ~1166px for retina",Low resolution,Resupply at 1166px wide or more
+5,Knowledge Pillars,"""Explore this pillar"" link",CTA,Desktop,not built,Was in the supplied reference,OPEN QUESTION,Tell us where each pillar should link and it will be added
+6,Methodology,Side label,Label,Both,Methodology,One word,Live,
+6,Methodology,Heading,Heading,Both,Principles shape each day,Max ~30 characters,Live,
+6,Methodology,Paragraph 1,Body,Desktop only,"Sharing knowledge, building connections, and staying grounded overlap to produce what guests describe afterwards as a lifetime experience.",Max ~160 characters,Live,Hidden on mobile by design
+6,Methodology,Paragraph 2,Body,Desktop only,"It is not a conference and not a lecture — every speaker is a strategist, and every discussion turns into a lesson drawn from real business challenges.",Max ~160 characters,Live,Hidden on mobile by design
+6,Methodology,Diagram label 1,Label,Both,SharingKnowledge ,"Two words, sets on two lines",Live,
+6,Methodology,Diagram label 2,Label,Both,Building Connections,"Two words, sets on two lines",Live,
+6,Methodology,Diagram label 3,Label,Both,StayingGrounded,"Two words, sets on two lines",Live,
+6,Methodology,Diagram label 4,Label,Both,LifetimeExperience,"Two words, sets on two lines",Live,
+6,Methodology,Values heading,Heading,Both,Built around three values.,Max ~30 characters,Live,
+6,Methodology,Value — Humbleness,Body,Both,"Being grounded, valuing growth, and acknowledging the contributions of others.","1 sentence, max ~90 characters",Live,
+6,Methodology,Value — Generosity,Body,Both,"Willingly sharing knowledge, time, and opportunities to uplift others.","1 sentence, max ~90 characters",Live,
+6,Methodology,Value — Openness,Body,Both,"Embracing new ideas, people, and practices with curiosity and adaptability.","1 sentence, max ~90 characters",Live,
+6,Methodology,Background film,Video,Both,assets/video/methodology-bg.mp4 (1280x720),"Ambient loop, sits under an 85% navy scrim, silent and decorative",OK,
+7,Experience,Side label,Label,Both,Experience,One word,Live,
+7,Experience,Heading,Heading,Both,Hear it from those who were there.,Max ~40 characters,Live,
+7,Experience,Sub-heading,Body,Both,Reflections fromThe Strategy Retreat 2025,Two short lines,Live,
+7,Experience,Feature film — title,Heading,Both,Comprehensive Experience,Max ~30 characters,Live,
+7,Experience,Feature film — caption,Text,Both,The Strategy Retreat 2025,Max ~30 characters,Live,
+7,Experience,Feature film,Video,Both,assets/video/retreat-2025-comprehensive.mp4 (640x360),"Box is locked to 16:9 to match this file. A different aspect needs a CSS change | Currently 640px wide, drawn at 788px — needs ~1576px for retina",Low resolution,Resupply at 1576px wide or more
+7,Experience,Rail label,Label,Mobile,Real stories from the retreat,"Max ~30 characters, uppercase",Live,
+7,Experience,Reflection 1 — quote,Quote,Both,You leave with perspectives you wouldn’t get in a meeting room.,"2-3 lines, max ~75 characters. Space for 3 lines is reserved so all cards align",PLACEHOLDER,Confirm the real quote
+7,Experience,Reflection 1 — name,Text,Both,Ahmed Hassan,"Full name, sets in gold",PLACEHOLDER,Confirm the real speaker
+7,Experience,Reflection 1 — role,Text,Both,Managing Director,Max ~25 characters,PLACEHOLDER,Confirm the real role
+7,Experience,Reflection 2 — quote,Quote,Both,The conversations continue long after the sessions end.,"2-3 lines, max ~75 characters. Space for 3 lines is reserved so all cards align",PLACEHOLDER,Confirm the real quote
+7,Experience,Reflection 2 — name,Text,Both,Mariam Ali,"Full name, sets in gold",PLACEHOLDER,Confirm the real speaker
+7,Experience,Reflection 2 — role,Text,Both,Strategy Director,Max ~25 characters,PLACEHOLDER,Confirm the real role
+7,Experience,Reflection 3 — quote,Quote,Both,It doesn’t feel like networking. The connections happen naturally.,"2-3 lines, max ~75 characters. Space for 3 lines is reserved so all cards align",PLACEHOLDER,Confirm the real quote
+7,Experience,Reflection 3 — name,Text,Both,Omar Khalil,"Full name, sets in gold",PLACEHOLDER,Confirm the real speaker
+7,Experience,Reflection 3 — role,Text,Both,Founder,Max ~25 characters,PLACEHOLDER,Confirm the real role
+7,Experience,Reflection 1 — film,Video,Both,assets/video/knowledge-sharing.mp4 (720x1280),"STAND-IN: these are the old section clips, not testimonials. Source films are vertical (720x1280) but desktop cards are landscape 4:3, so they crop hard",STAND-IN,Supply the real testimonial film; tell us the orientation and the card ratio will be set to match
+7,Experience,Reflection 2 — film,Video,Both,assets/video/mindful-connection.mp4 (360x640),"STAND-IN: these are the old section clips, not testimonials. Source films are vertical (720x1280) but desktop cards are landscape 4:3, so they crop hard | Currently 360px wide, drawn at 301px — needs ~602px for retina",STAND-IN / low resolution,Supply the real testimonial film; tell us the orientation and the card ratio will be set to match
+7,Experience,Reflection 3 — film,Video,Both,assets/video/business-case-studies-2.mp4 (720x1280),"STAND-IN: these are the old section clips, not testimonials. Source films are vertical (720x1280) but desktop cards are landscape 4:3, so they crop hard",STAND-IN,Supply the real testimonial film; tell us the orientation and the card ratio will be set to match
+7,Experience,More reflections,Structure,Both,3 cards,The rail scrolls and dots follow the count automatically — tested to 6,Ready to extend,"Send quote, name, role and film for each additional reflection"
+8,Partners,Side label,Label,Both,Partners,One word,Live,
+8,Partners,Business Belaraby logo,Image,Both,assets/logos/business-belaraby.png (not in repo),"Transparent PNG or SVG, drawn 20px tall, greyscaled until hover",MISSING — supply file,Supply the logo — the wall currently shows the partner name as text
+8,Partners,Nexus logo,Image,Both,assets/logos/nexus.png (not in repo),"Transparent PNG or SVG, drawn 42px tall, greyscaled until hover",MISSING — supply file,Supply the logo — the wall currently shows the partner name as text
+8,Partners,JRNY logo,Image,Both,assets/logos/jrny.png (not in repo),"Transparent PNG or SVG, drawn 32px tall, greyscaled until hover",MISSING — supply file,Supply the logo — the wall currently shows the partner name as text
+8,Partners,More partners,Structure,Both,3 logos,The wall wraps automatically,Ready to extend,Send additional logos with the agreed display height
+9,Accommodation,Side label,Label,Both,Accommodation,One word,Live,
+9,Accommodation,Heading,Heading,Both,"Two nights, three days",Max ~28 characters,Live,
+9,Accommodation,Fact — Rooms,Text,Both,"Single, double & triple occupancy",Max 2 short lines,Review,Confirm 2026 details
+9,Accommodation,Fact — Full board,Text,Both,"Breakfast, lunch, dinnerBeverages not included",Max 2 short lines,Review,Confirm 2026 details
+9,Accommodation,Fact — Location,Text,Both,"Matarma Bay, Ras SudrSouth Sinai",Max 2 short lines,Review,Confirm 2026 details
+9,Accommodation,Fact — Rates,Text,Both,On requestInstallments available,Max 2 short lines,Review,Confirm 2026 details
+9,Accommodation,Venue photograph 1,Image,Both,assets/venue/venue-1.png (1450x1085),"Carousel slide, centre-cropped to 4:3",OK,
+9,Accommodation,Venue photograph 2,Image,Both,assets/venue/venue-2.png (1121x1403),"Carousel slide, centre-cropped to 4:3",OK,
+9,Accommodation,Venue photograph 3,Image,Both,assets/venue/venue-3.png (1665x945),"Carousel slide, centre-cropped to 4:3",OK,
+9,Accommodation,Venue photograph 4,Image,Both,assets/venue/venue-4.png (1456x1080),"Carousel slide, centre-cropped to 4:3",OK,
+9,Accommodation,More venue photos,Structure,Both,4 slides,Carousel and its counter follow the count,Ready to extend,Send additional venue images
+10,FAQ,Side label,Label,Both,FAQ,Short,Live,
+10,FAQ,Heading,Heading,Both,Frequently asked questions,Max ~30 characters,Live,
+10,FAQ,Intro,Body,Both,"The essentials on access, cost, and what the three days involve.",1 sentence,Live,
+10,FAQ,Q1 — question,Heading,Both,Who can attend the retreat?,Max ~40 characters,Live,
+10,FAQ,Q1 — answer,Body,Both,"The retreat is invitation-only, for CEOs, founders, managing directors, strategy leaders, and senior professionals involved in strategic decision-making. The community grows through referrals.",Max ~220 characters,Review,"Confirm 2026 wording, especially rates"
+10,FAQ,Q2 — question,Heading,Both,What does the rate include?,Max ~40 characters,Live,
+10,FAQ,Q2 — answer,Body,Both,"Two nights and three days of accommodation in a single or double room, full board (breakfast, lunch, and dinner; beverages not included), and the full programme of sessions and activities.",Max ~220 characters,Review,"Confirm 2026 wording, especially rates"
+10,FAQ,Q3 — question,Heading,Both,How much does it cost?,Max ~40 characters,Live,
+10,FAQ,Q3 — answer,Body,Both,"Rates are shared on request, with special rates for groups of more than three participants. Installment plans are available.",Max ~220 characters,Review,"Confirm 2026 wording, especially rates"
+10,FAQ,Q4 — question,Heading,Both,Where exactly is it held?,Max ~40 characters,Live,
+10,FAQ,Q4 — answer,Body,Both,"Matarma Bay, Ras Sudr, on the Gulf of Suez in South Sinai — roughly a two-hour drive from Cairo. Travel details are shared ahead of the retreat.",Max ~220 characters,Review,"Confirm 2026 wording, especially rates"
+10,FAQ,Side photograph,Image,Desktop,assets/photos/mt-workshop.png (631x418),"Landscape, drawn ~190px tall | Currently 631px wide, drawn at 1440px — needs ~2880px for retina",Low resolution,Resupply at 2880px wide or more
+10,FAQ,More questions,Structure,Both,4 items,Accordion extends freely,Ready to extend,Send additional Q&A pairs
+11,Closing CTA,Heading,Heading,Both,Start your three days by the sea,Max ~35 characters,Live,
+11,Closing CTA,Button,CTA,Both,Register,One word,BLOCKED — page missing,"Links to registration.html, not yet built"
+11,Closing CTA,Background photograph,Image,Both,assets/photos/mt-workshop.png (631x418),"Full-bleed at 45% opacity behind a dark scrim | Currently 631px wide, drawn at 1440px — needs ~2880px for retina",Low resolution,Resupply at 2880px wide or more
+12,Footer,Blurb,Body,Both,Egypt's invitation-only community of strategy practitioners. Powered by Forefront Consulting.,1-2 sentences,Live,
+12,Footer,Column — The retreat,Links,Desktop only,Our Purpose / Experience / Leaders,Short link labels,Live,Hidden on mobile by design
+12,Footer,Column — Register,Links,Desktop only,Attendee registration / Speaker information,Short link labels,Live,Hidden on mobile by design
+12,Footer,Column — Details,Links,Desktop only,"15–17 October 2026 / Matarma Bay, Ras Sudr / Invitation only",Short link labels,Live,Hidden on mobile by design
+12,Footer,Copyright,Text,Both,© Forefront Consulting Group 2026,Entity name and year,NEEDS CONFIRMATION,"The two artboards disagreed — one said ""Forefront Cnsulting Group"", the other ""Forefront Strategy Group"". Confirm the legal entity"
+12,Footer,Privacy / Contact,Links,Desktop only,Privacy / Contact,Short labels,BLOCKED — pages missing,privacy.html and contact.html have not been built
