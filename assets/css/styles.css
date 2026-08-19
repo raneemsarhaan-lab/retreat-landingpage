@@ -693,27 +693,32 @@ video[data-ambient] { pointer-events: none; }
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(10,25,64,.15) 0%, rgba(10,25,64,.35) 45%, rgba(8,18,46,.9) 100%);
+  background: linear-gradient(180deg,
+    rgba(9,20,52,.10) 0%,
+    rgba(9,20,52,.55) 38%,
+    rgba(9,20,52,.90) 68%,
+    rgba(9,20,52,.98) 100%);
 }
 
 .vplay {
-  position: relative;
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
   z-index: 2;
-  margin: auto;              /* centres in whatever space the copy leaves */
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 72px;
-  height: 72px;
+  width: 52px;
+  height: 52px;
   padding: 0;
   border: 0;
   border-radius: 50%;
   background: var(--white);
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(8, 12, 22, .35);
+  box-shadow: 0 6px 18px rgba(8, 12, 22, .35);
   transition: transform var(--dur-base) var(--ease), background-color var(--dur-base) var(--ease);
 }
-.vplay svg { width: 26px; height: 26px; margin-left: 3px; fill: var(--gold-500); }
+.vplay svg { width: 18px; height: 18px; margin-left: 2px; fill: var(--gold-500); }
 .vplay:hover { transform: scale(1.07); }
 .vplayer.is-playing .vplay { opacity: 0; pointer-events: none; }
 .vplayer.is-playing > .feature__scrim,
@@ -767,7 +772,7 @@ video[data-ambient] { pointer-events: none; }
   list-style: none;
 }
 .quote {
-  flex: 0 0 74%;
+  flex: 0 0 86%;                  /* leaves ~18% of the next card showing */
   aspect-ratio: 3 / 4;
   border-radius: var(--radius-xl);
 }
@@ -775,19 +780,21 @@ video[data-ambient] { pointer-events: none; }
 .quote__body {
   position: relative;
   z-index: 1;
-  margin: 0;
+  margin: auto 0 0;          /* pinned to the bottom, so every card lines up */
   padding: var(--space-4) var(--space-5) var(--space-5);
 }
 .quote__mark {
   display: block;
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 2rem;
-  line-height: .6;
+  font-size: 1.125rem;
+  line-height: .8;
   color: var(--gold-500);
+  opacity: .95;
 }
 .quote__body p {
-  margin-top: var(--space-3);
+  margin-top: var(--space-2);
+  min-height: calc(3 * 1.35em);   /* reserve three lines so quotes never shift */
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1rem;
@@ -795,8 +802,7 @@ video[data-ambient] { pointer-events: none; }
   color: var(--white);
   text-wrap: pretty;
 }
-.quote__body .rule { margin: var(--space-3) 0; }
-.quote__by { font-size: .875rem; line-height: 1.45; color: rgba(255,255,255,.85); }
+.quote__by { margin-top: var(--space-3); font-size: .875rem; line-height: 1.45; color: rgba(255,255,255,.62); }
 .quote__name { display: block; font-family: var(--font-display); font-weight: 700; color: var(--gold-500); }
 .quote__by [aria-hidden] { display: none; }   /* separator only earns its place inline */
 
@@ -1217,8 +1223,9 @@ video[data-ambient] { pointer-events: none; }
   .quote__name { display: inline; }
   .quote__by [aria-hidden] { display: inline; }
 
-    .vplay { width: 84px; height: 84px; }
-  .vplay svg { width: 30px; height: 30px; }
+    .vplay { width: 56px; height: 56px; }
+  .vplay svg { width: 20px; height: 20px; }
+  .feature .vplay { top: var(--space-5); right: var(--space-5); }
 
     .partners__wall { gap: var(--space-8) 72px; padding: var(--space-8) var(--space-12); }
 
