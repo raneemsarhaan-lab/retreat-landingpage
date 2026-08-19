@@ -63,6 +63,8 @@ Each of these is a deliberate change, listed so it can be reverted:
   scroll. Desktop content takes a wider right gutter so nothing runs under it —
   the knowledge tabs did before that was added.
 - The knowledge tabs are spaced `space-between` so the row fills its column.
+- Every editorial block now uses the sticky side-label layout, Leaders and
+  Partners included; the artboards had those two as centred headings.
 - Section rhythm is compressed: the 100px block padding drops to 48px and the
   media heights and internal gaps come down with it, taking the page from
   7,855px to ~6,530px at 1440x900. Most sections now sit at 0.7-0.85x the

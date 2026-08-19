@@ -1115,11 +1115,9 @@ video[data-ambient] { pointer-events: none; }
   }
   .methodology .rail__label { color: var(--white); }
 
-  .delegates { text-align: center; }
   .delegates .section-head { margin-bottom: var(--space-8); }
-  .delegates .section-head .eyebrow { display: none; }
-  .delegates .section-head .display { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1; }
-  .delegates .section-head .lede { max-width: 620px; margin-inline: auto; font-size: 1.125rem; }
+  .delegates .section-head .display { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.08; }
+  .delegates .section-head .lede { max-width: 520px; font-size: 1.125rem; }
   .delegates .scroller { margin-inline: 0; padding-inline: 0; gap: var(--space-6); }
   .delegates__more { margin-top: 34px; }
 
