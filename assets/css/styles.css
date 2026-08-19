@@ -580,12 +580,13 @@ video[data-ambient] { pointer-events: none; }
 .methodology .eyebrow { color: var(--white); }
 
 /* Frosted panel behind the copy — same glass treatment as the desktop nav.
-   Kept light (8%) so it lifts off the footage without washing out white text. */
+   Kept very light (4%) so it barely tints the footage; the blur does most of
+   the separating work. */
 .methodology__panel {
   padding: var(--space-8) var(--space-5);
-  border: 1px solid rgba(255, 255, 255, .16);
+  border: 1px solid rgba(255, 255, 255, .12);
   border-radius: var(--radius-2xl);
-  background: rgba(255, 255, 255, .08);
+  background: rgba(255, 255, 255, .04);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
