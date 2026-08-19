@@ -154,6 +154,8 @@ video[data-ambient] { pointer-events: none; }
 }
 .dark-surface .logo-fallback { color: rgba(255,255,255,.8); }
 
+.flying-cta { display: none; }
+
 /* =========================================================================
    Hero
    ========================================================================= */
@@ -280,8 +282,6 @@ video[data-ambient] { pointer-events: none; }
   text-shadow: 0 2px 20px rgba(8,12,22,.55);
   text-wrap: balance;
 }
-
-.hero__title-lg { display: none; }
 
 .hero__meta {
   align-self: flex-start;
@@ -953,6 +953,37 @@ video[data-ambient] { pointer-events: none; }
    Desktop — reproduces R_Landing_Page.dc.html
    ========================================================================= */
 @media (min-width: 900px) {
+  /* The pinned tab owns the right edge, so content gets a wider gutter there. */
+  .shell { padding-right: calc(var(--gutter) + 44px); }
+
+  /* Register tab pinned to the right edge, present the whole way down */
+  .flying-cta {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    z-index: 35;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    padding: 24px 15px;
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    background: var(--gold-500);
+    color: var(--ink-900);
+    writing-mode: vertical-rl;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: .9375rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    box-shadow: 0 10px 30px rgba(8, 12, 22, .3);
+    transition: background-color var(--dur-base) var(--ease),
+                padding-inline var(--dur-base) var(--ease);
+  }
+  .flying-cta:hover { background: var(--white); padding-inline: 19px 15px; }
+  .flying-cta:focus-visible { outline-offset: -5px; }
+
   .hero { min-height: 850px; }
   .hero__scrim {
     background:
@@ -990,6 +1021,8 @@ video[data-ambient] { pointer-events: none; }
   }
   .hero__nav nav a:hover { color: var(--gold-500); }
   .hero__nav .brand-mark { height: 32px; }
+  .hero__nav-actions { display: flex; align-items: center; gap: var(--space-5); }
+  .hero__nav-actions .topbar__pdf { min-height: 46px; font-size: .9375rem; }
   .hero__nav .btn { min-height: 46px; font-size: 1rem; }
 
   .hero__bg { object-position: center 50%; }
@@ -1002,8 +1035,7 @@ video[data-ambient] { pointer-events: none; }
 
   .hero__copy { padding: 167px var(--space-12) 118px 56px; }
   .hero__kicker { margin-bottom: 26px; font-size: .875rem; letter-spacing: .26em; }
-  .hero__title-sm { display: none; }
-  .hero__title-lg { display: inline; }
+  .hero__break { display: none; }
   .hero__title { max-width: 980px; font-size: clamp(3.5rem, 6vw, 5.25rem); line-height: 1.05; letter-spacing: -.02em; }
   .hero__meta { gap: 22px; margin-top: 42px; padding: var(--space-4); border-radius: var(--radius-xl); }
   .hero__meta-icon { width: 72px; height: 72px; border-radius: 12px; }
@@ -1071,7 +1103,7 @@ video[data-ambient] { pointer-events: none; }
   .pillars__intro .display { font-size: clamp(1.5rem, 2.6vw, 2.125rem); margin-bottom: 0; }
 
   .outcomes { display: flex; }
-  .tabs { gap: var(--space-8); margin: 0 0 var(--space-10); }
+  .tabs { gap: var(--space-8); margin: 0 0 var(--space-10); justify-content: space-between; }
   .tab { padding-bottom: var(--space-4); font-size: .8125rem; letter-spacing: .06em; }
   .tab__short { display: none; }
   .tab__long { display: inline; }

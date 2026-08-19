@@ -54,6 +54,16 @@ Each of these is a deliberate change, listed so it can be reverted:
   two arrows. Now that four venue photos exist they drive a real scroll-snap
   carousel: swipeable on touch, buttons wrap around, and a live region announces
   "Photo n of 4".
+**Desktop-only revisions.**
+
+- The hero headline is "The Strategy Retreat" at both widths now — one line on
+  desktop, stacked on mobile via breaks that are hidden above 900px.
+- The nav carries mark, sections, "Download PDF" and a Register button.
+- A Register tab is pinned to the right edge of the viewport for the whole
+  scroll. Desktop content takes a wider right gutter so nothing runs under it —
+  the knowledge tabs did before that was added.
+- The knowledge tabs are spaced `space-between` so the row fills its column.
+
 **Mobile-only revisions.** Requested after the artboards, and scoped below
 900px — desktop keeps the artboard arrangement in every case:
 
