@@ -674,7 +674,13 @@ video[data-ambient] { pointer-events: none; }
 .exp__sub { font-size: 1rem; line-height: 1.5; color: var(--gray-700); }
 
 /* Shared shell for anything with a click-to-play film in it */
-.vplayer { position: relative; overflow: hidden; background: var(--navy-800); }
+.vplayer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--navy-800);
+}
 .vplayer > video {
   position: absolute;
   inset: 0;
@@ -691,11 +697,9 @@ video[data-ambient] { pointer-events: none; }
 }
 
 .vplay {
-  position: absolute;
-  top: 44%;
-  left: 50%;
+  position: relative;
   z-index: 2;
-  transform: translate(-50%, -50%);
+  margin: auto;              /* centres in whatever space the copy leaves */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -710,7 +714,7 @@ video[data-ambient] { pointer-events: none; }
   transition: transform var(--dur-base) var(--ease), background-color var(--dur-base) var(--ease);
 }
 .vplay svg { width: 26px; height: 26px; margin-left: 3px; fill: var(--gold-500); }
-.vplay:hover { transform: translate(-50%, -50%) scale(1.07); }
+.vplay:hover { transform: scale(1.07); }
 .vplayer.is-playing .vplay { opacity: 0; pointer-events: none; }
 .vplayer.is-playing > .feature__scrim,
 .vplayer.is-playing > .quote__scrim,
@@ -719,14 +723,12 @@ video[data-ambient] { pointer-events: none; }
 
 /* Feature film */
 .feature {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   border-radius: var(--radius-xl);
   margin: 0;
 }
 .feature__caption {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
+  position: relative;
   z-index: 1;
   padding: var(--space-5) var(--space-5) var(--space-6);
 }
@@ -771,9 +773,7 @@ video[data-ambient] { pointer-events: none; }
 }
 .dots--quotes { margin-top: var(--space-3); }
 .quote__body {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
+  position: relative;
   z-index: 1;
   margin: 0;
   padding: var(--space-4) var(--space-5) var(--space-5);
@@ -800,24 +800,10 @@ video[data-ambient] { pointer-events: none; }
 .quote__name { display: block; font-family: var(--font-display); font-weight: 700; color: var(--gold-500); }
 .quote__by [aria-hidden] { display: none; }   /* separator only earns its place inline */
 
-.exp__tagline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-  margin-top: var(--space-2);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: .9375rem;
-  color: var(--navy-900);
-  text-align: center;
-}
 
 /* =========================================================================
    Partners
    ========================================================================= */
-.partners { text-align: center; }
-.partners .display { margin-bottom: var(--space-6); font-size: 1.25rem; letter-spacing: .02em; }
 .partners__wall {
   display: flex;
   flex-wrap: wrap;
@@ -1207,7 +1193,7 @@ video[data-ambient] { pointer-events: none; }
   .exp__intro .display { font-size: clamp(1.75rem, 2.6vw, 2.25rem); line-height: 1.1; }
   .exp__sub { font-size: 1.0625rem; }
 
-  .feature { aspect-ratio: auto; height: 100%; min-height: 274px; border-radius: var(--radius-2xl); }
+  .feature { aspect-ratio: 16 / 9; height: auto; border-radius: var(--radius-2xl); }
   .feature__caption { padding: var(--space-6) var(--space-8) var(--space-8); }
   .feature__title { font-size: clamp(1.25rem, 2vw, 1.625rem); }
   .feature__sub { font-size: .9375rem; }
@@ -1222,7 +1208,7 @@ video[data-ambient] { pointer-events: none; }
   /* Exactly three across; a fourth film onward makes the rail scroll. */
   .quote {
     flex: 0 0 calc((100% - 2 * var(--space-6)) / 3);
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 4 / 3;
     border-radius: var(--radius-xl);
   }
   .dots--quotes { grid-column: 1 / -1; margin-top: var(--space-2); }
@@ -1231,12 +1217,10 @@ video[data-ambient] { pointer-events: none; }
   .quote__name { display: inline; }
   .quote__by [aria-hidden] { display: inline; }
 
-  .exp__tagline { grid-column: 1 / -1; margin-top: var(--space-2); font-size: 1rem; }
-  .vplay { width: 84px; height: 84px; }
+    .vplay { width: 84px; height: 84px; }
   .vplay svg { width: 30px; height: 30px; }
 
-  .partners .display { font-size: clamp(1.5rem, 2.4vw, 2rem); }
-  .partners__wall { gap: var(--space-8) 72px; padding: var(--space-8) var(--space-12); }
+    .partners__wall { gap: var(--space-8) 72px; padding: var(--space-8) var(--space-12); }
 
   .venue__grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-12); align-items: center; }
   .venue__media { aspect-ratio: 4 / 3; margin-bottom: 0; border-radius: var(--radius-2xl); }
@@ -1291,7 +1275,7 @@ video[data-ambient] { pointer-events: none; }
   .section-head .display,
   .pillars__intro .display,
   .methodology__title,
-  .partners .display,
+  .exp__intro .display,
   .venue__body .display,
   .faq__intro .display,
   .cta .display {
