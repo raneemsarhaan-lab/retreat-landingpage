@@ -1,12 +1,12 @@
 ﻿#,Section,Element,Type,Shown on,Current content / file,Guidance & constraints,Status,Action for content team
-1,Global / Nav,Nav link 1,Link,Desktop,Our Purpose,One or two words,Live,Points to the About block
-1,Global / Nav,Nav link 2,Link,Desktop,Experience,One or two words,Live,Points to the Experience block
-1,Global / Nav,Nav link 3,Link,Desktop,Leaders,One or two words,Live,Points to the Delegates block
-1,Global / Nav,Download PDF,CTA,Both,Download PDF,Short label,BLOCKED — file missing,Supply assets/the-strategy-retreat-2026.pdf; link is wired and will 404 until then
+1,Global / Nav,Nav link 1,Link,Desktop,Our Purpose,One or two words,Live,Jumps to a block on this page
+1,Global / Nav,Nav link 2,Link,Desktop,Experience,One or two words,Live,Jumps to a block on this page
+1,Global / Nav,Nav link 3,Link,Desktop,Leaders,One or two words,Live,Jumps to a block on this page
+1,Global / Nav,Download PDF,CTA,Both,Download PDF,Short label,BLOCKED — file missing,Supply assets/the-strategy-retreat-2026.pdf; the link is wired and will 404 until then
 1,Global / Nav,Register button,CTA,Both,Register,Short label,BLOCKED — page missing,"Links to registration.html, which has not been built"
-1,Global / Nav,Floating Register tab,CTA,Desktop,Register,"Vertical tab, right edge",Live,
-1,Global / Nav,Brand mark (dark backgrounds),Image,Both,assets/strategy-community-mark-white.png (250x394),"Mark only, transparent PNG, drawn 32-34px tall",OK,Replace with the original export — current file was recovered from a screenshot and has no gold needle
-1,Global / Footer,Brand lockup (light backgrounds),Image,Both,assets/strategy-community-lockup.png (1170x397),"Full navy lockup, transparent PNG, drawn 44-52px tall",OK,Replace with the original export — recovered from a screenshot
+1,Global / Nav,Floating Register tab,CTA,Desktop,Register,Vertical tab pinned to the right edge,Live,
+1,Global / Nav,Brand mark (dark backgrounds),Image,Both,assets/strategy-community-mark-white.png (250x394),"Mark only, transparent PNG, drawn 32-34px tall",Recovered from a screenshot,Supply the original export — this one has no gold needle
+1,Global / Footer,Brand lockup (light backgrounds),Image,Both,assets/strategy-community-lockup.png (1170x397),"Full navy lockup, transparent PNG, drawn 44-52px tall",Recovered from a screenshot,"Supply the original export — screen resolution only, will not scale up"
 2,Hero,Eyebrow,Text,Both,An exclusive invite-only retreat,"Max ~40 characters, uppercase",Live,
 2,Hero,Headline,Heading,Both,The Strategy Retreat,"2-3 words. Stacks on 3 lines on mobile, 1 line on desktop",Live,
 2,Hero,Date,Text,Both,15–17 October 2026,Keep the en dash,Live,
@@ -58,34 +58,34 @@
 5,Knowledge Pillars,Tab 4 — full label,Label,Desktop,Strategic Essential Skills,Max ~26 characters — longer labels wrap to two lines below 1300px,Live,
 5,Knowledge Pillars,Tab 4 — short label,Label,Mobile,Skills,Max ~12 characters,Live,
 5,Knowledge Pillars,Panel 01 — title,Heading,Both,Strategy Knowledge,Max ~28 characters,Live,
-5,Knowledge Pillars,Panel 01 — description,Body,Both,(see index.html),"2 lines, max ~120 characters",Live,
+5,Knowledge Pillars,Panel 01 — description,Body,Both,Frameworks and mental models practitioners can apply directly to their own business challenges.,"2 lines, max ~120 characters",Live,
 5,Knowledge Pillars,Panel 01 — media,Image,Both,assets/photos/mt-workshop.png (631x418),"Landscape 2:1 on desktop | Currently 631px wide, drawn at 1440px — needs ~2880px for retina",Low resolution,Resupply at 2880px wide or more
 5,Knowledge Pillars,Panel 02 — title,Heading,Both,Business Case Studies,Max ~28 characters,Live,
-5,Knowledge Pillars,Panel 02 — description,Body,Both,(see index.html),"2 lines, max ~120 characters",Live,
-5,Knowledge Pillars,Panel 02 — media,Video,Both,assets/video/business-case-studies.mp4 (720x1280),Landscape 2:1 on desktop,OK,
+5,Knowledge Pillars,Panel 02 — description,Body,Both,"How organizations across industries make choices, execute, and adapt.","2 lines, max ~120 characters",Live,
+5,Knowledge Pillars,Panel 02 — media,Video,Both,assets/video/business-case-studies.mp4 (720x1280),"Landscape 2:1 on desktop | Source is vertical (720x1280) but the slot is landscape, so it crops hard",Wrong orientation,"Supply a landscape version, or tell us and the slot ratio will change"
 5,Knowledge Pillars,Panel 03 — title,Heading,Both,Leadership Awareness,Max ~28 characters,Live,
-5,Knowledge Pillars,Panel 03 — description,Body,Both,(see index.html),"2 lines, max ~120 characters",Live,
+5,Knowledge Pillars,Panel 03 — description,Body,Both,How mindset drives strategy — awareness and accountability behind decisions.,"2 lines, max ~120 characters",Live,
 5,Knowledge Pillars,Panel 03 — media,Image,Both,assets/photos/retreat-4x3-2.png (640x427),"Landscape 2:1 on desktop | Currently 640px wide, drawn at 583px — needs ~1166px for retina",Low resolution,Resupply at 1166px wide or more
 5,Knowledge Pillars,Panel 04 — title,Heading,Both,Strategic Essential Skills,Max ~28 characters,Live,
-5,Knowledge Pillars,Panel 04 — description,Body,Both,(see index.html),"2 lines, max ~120 characters",Live,
+5,Knowledge Pillars,Panel 04 — description,Body,Both,"Alignment, communication, decision-making, and leadership in action.","2 lines, max ~120 characters",Live,
 5,Knowledge Pillars,Panel 04 — media,Image,Both,assets/photos/retreat-wide-4.png (1128x537),"Landscape 2:1 on desktop | Currently 1128px wide, drawn at 583px — needs ~1166px for retina",Low resolution,Resupply at 1166px wide or more
 5,Knowledge Pillars,"""Explore this pillar"" link",CTA,Desktop,not built,Was in the supplied reference,OPEN QUESTION,Tell us where each pillar should link and it will be added
 6,Methodology,Side label,Label,Both,Methodology,One word,Live,
 6,Methodology,Heading,Heading,Both,Principles shape each day,Max ~30 characters,Live,
 6,Methodology,Paragraph 1,Body,Desktop only,"Sharing knowledge, building connections, and staying grounded overlap to produce what guests describe afterwards as a lifetime experience.",Max ~160 characters,Live,Hidden on mobile by design
 6,Methodology,Paragraph 2,Body,Desktop only,"It is not a conference and not a lecture — every speaker is a strategist, and every discussion turns into a lesson drawn from real business challenges.",Max ~160 characters,Live,Hidden on mobile by design
-6,Methodology,Diagram label 1,Label,Both,SharingKnowledge ,"Two words, sets on two lines",Live,
-6,Methodology,Diagram label 2,Label,Both,Building Connections,"Two words, sets on two lines",Live,
-6,Methodology,Diagram label 3,Label,Both,StayingGrounded,"Two words, sets on two lines",Live,
-6,Methodology,Diagram label 4,Label,Both,LifetimeExperience,"Two words, sets on two lines",Live,
+6,Methodology,Diagram label 1,Label,Both,Sharing / Knowledge,"Two words, sets on two lines | '/' marks a line break in the design",Live,
+6,Methodology,Diagram label 2,Label,Both,Building / Connections,"Two words, sets on two lines | '/' marks a line break in the design",Live,
+6,Methodology,Diagram label 3,Label,Both,Staying / Grounded,"Two words, sets on two lines | '/' marks a line break in the design",Live,
+6,Methodology,Diagram label 4,Label,Both,Lifetime / Experience,"Two words, sets on two lines | '/' marks a line break in the design",Live,
 6,Methodology,Values heading,Heading,Both,Built around three values.,Max ~30 characters,Live,
 6,Methodology,Value — Humbleness,Body,Both,"Being grounded, valuing growth, and acknowledging the contributions of others.","1 sentence, max ~90 characters",Live,
 6,Methodology,Value — Generosity,Body,Both,"Willingly sharing knowledge, time, and opportunities to uplift others.","1 sentence, max ~90 characters",Live,
 6,Methodology,Value — Openness,Body,Both,"Embracing new ideas, people, and practices with curiosity and adaptability.","1 sentence, max ~90 characters",Live,
-6,Methodology,Background film,Video,Both,assets/video/methodology-bg.mp4 (1280x720),"Ambient loop, sits under an 85% navy scrim, silent and decorative",OK,
+6,Methodology,Background film,Video,Both,assets/video/methodology-bg.mp4 (1280x720),"Ambient loop under an 85% navy scrim, silent and decorative",OK,
 7,Experience,Side label,Label,Both,Experience,One word,Live,
 7,Experience,Heading,Heading,Both,Hear it from those who were there.,Max ~40 characters,Live,
-7,Experience,Sub-heading,Body,Both,Reflections fromThe Strategy Retreat 2025,Two short lines,Live,
+7,Experience,Sub-heading,Body,Both,Reflections from / The Strategy Retreat 2025,Two short lines | '/' marks a line break in the design,Live,
 7,Experience,Feature film — title,Heading,Both,Comprehensive Experience,Max ~30 characters,Live,
 7,Experience,Feature film — caption,Text,Both,The Strategy Retreat 2025,Max ~30 characters,Live,
 7,Experience,Feature film,Video,Both,assets/video/retreat-2025-comprehensive.mp4 (640x360),"Box is locked to 16:9 to match this file. A different aspect needs a CSS change | Currently 640px wide, drawn at 788px — needs ~1576px for retina",Low resolution,Resupply at 1576px wide or more
@@ -99,9 +99,9 @@
 7,Experience,Reflection 3 — quote,Quote,Both,It doesn’t feel like networking. The connections happen naturally.,"2-3 lines, max ~75 characters. Space for 3 lines is reserved so all cards align",PLACEHOLDER,Confirm the real quote
 7,Experience,Reflection 3 — name,Text,Both,Omar Khalil,"Full name, sets in gold",PLACEHOLDER,Confirm the real speaker
 7,Experience,Reflection 3 — role,Text,Both,Founder,Max ~25 characters,PLACEHOLDER,Confirm the real role
-7,Experience,Reflection 1 — film,Video,Both,assets/video/knowledge-sharing.mp4 (720x1280),"STAND-IN: these are the old section clips, not testimonials. Source films are vertical (720x1280) but desktop cards are landscape 4:3, so they crop hard",STAND-IN,Supply the real testimonial film; tell us the orientation and the card ratio will be set to match
-7,Experience,Reflection 2 — film,Video,Both,assets/video/mindful-connection.mp4 (360x640),"STAND-IN: these are the old section clips, not testimonials. Source films are vertical (720x1280) but desktop cards are landscape 4:3, so they crop hard | Currently 360px wide, drawn at 301px — needs ~602px for retina",STAND-IN / low resolution,Supply the real testimonial film; tell us the orientation and the card ratio will be set to match
-7,Experience,Reflection 3 — film,Video,Both,assets/video/business-case-studies-2.mp4 (720x1280),"STAND-IN: these are the old section clips, not testimonials. Source films are vertical (720x1280) but desktop cards are landscape 4:3, so they crop hard",STAND-IN,Supply the real testimonial film; tell us the orientation and the card ratio will be set to match
+7,Experience,Reflection 1 — film,Video,Both,assets/video/knowledge-sharing.mp4 (720x1280),"STAND-IN: an old section clip, not a testimonial | Source is vertical (720x1280) but the slot is landscape, so it crops hard",STAND-IN,Supply the real testimonial film; tell us the orientation and the card ratio will be set to match
+7,Experience,Reflection 2 — film,Video,Both,assets/video/mindful-connection.mp4 (360x640),"STAND-IN: an old section clip, not a testimonial | Currently 360px wide, drawn at 301px — needs ~602px for retina | Source is vertical (360x640) but the slot is landscape, so it crops hard",STAND-IN,Supply the real testimonial film; tell us the orientation and the card ratio will be set to match
+7,Experience,Reflection 3 — film,Video,Both,assets/video/business-case-studies-2.mp4 (720x1280),"STAND-IN: an old section clip, not a testimonial | Source is vertical (720x1280) but the slot is landscape, so it crops hard",STAND-IN,Supply the real testimonial film; tell us the orientation and the card ratio will be set to match
 7,Experience,More reflections,Structure,Both,3 cards,The rail scrolls and dots follow the count automatically — tested to 6,Ready to extend,"Send quote, name, role and film for each additional reflection"
 8,Partners,Side label,Label,Both,Partners,One word,Live,
 8,Partners,Business Belaraby logo,Image,Both,assets/logos/business-belaraby.png (not in repo),"Transparent PNG or SVG, drawn 20px tall, greyscaled until hover",MISSING — supply file,Supply the logo — the wall currently shows the partner name as text
@@ -111,9 +111,9 @@
 9,Accommodation,Side label,Label,Both,Accommodation,One word,Live,
 9,Accommodation,Heading,Heading,Both,"Two nights, three days",Max ~28 characters,Live,
 9,Accommodation,Fact — Rooms,Text,Both,"Single, double & triple occupancy",Max 2 short lines,Review,Confirm 2026 details
-9,Accommodation,Fact — Full board,Text,Both,"Breakfast, lunch, dinnerBeverages not included",Max 2 short lines,Review,Confirm 2026 details
-9,Accommodation,Fact — Location,Text,Both,"Matarma Bay, Ras SudrSouth Sinai",Max 2 short lines,Review,Confirm 2026 details
-9,Accommodation,Fact — Rates,Text,Both,On requestInstallments available,Max 2 short lines,Review,Confirm 2026 details
+9,Accommodation,Fact — Full board,Text,Both,"Breakfast, lunch, dinner / Beverages not included",Max 2 short lines | '/' marks a line break in the design,Review,Confirm 2026 details
+9,Accommodation,Fact — Location,Text,Both,"Matarma Bay, Ras Sudr / South Sinai",Max 2 short lines | '/' marks a line break in the design,Review,Confirm 2026 details
+9,Accommodation,Fact — Rates,Text,Both,On request / Installments available,Max 2 short lines | '/' marks a line break in the design,Review,Confirm 2026 details
 9,Accommodation,Venue photograph 1,Image,Both,assets/venue/venue-1.png (1450x1085),"Carousel slide, centre-cropped to 4:3",OK,
 9,Accommodation,Venue photograph 2,Image,Both,assets/venue/venue-2.png (1121x1403),"Carousel slide, centre-cropped to 4:3",OK,
 9,Accommodation,Venue photograph 3,Image,Both,assets/venue/venue-3.png (1665x945),"Carousel slide, centre-cropped to 4:3",OK,
@@ -130,7 +130,7 @@
 10,FAQ,Q3 — answer,Body,Both,"Rates are shared on request, with special rates for groups of more than three participants. Installment plans are available.",Max ~220 characters,Review,"Confirm 2026 wording, especially rates"
 10,FAQ,Q4 — question,Heading,Both,Where exactly is it held?,Max ~40 characters,Live,
 10,FAQ,Q4 — answer,Body,Both,"Matarma Bay, Ras Sudr, on the Gulf of Suez in South Sinai — roughly a two-hour drive from Cairo. Travel details are shared ahead of the retreat.",Max ~220 characters,Review,"Confirm 2026 wording, especially rates"
-10,FAQ,Side photograph,Image,Desktop,assets/photos/mt-workshop.png (631x418),"Landscape, drawn ~190px tall | Currently 631px wide, drawn at 1440px — needs ~2880px for retina",Low resolution,Resupply at 2880px wide or more
+10,FAQ,Side photograph,Image,Desktop,assets/photos/mt-workshop.png (631x418),"Landscape, drawn ~190px tall here — the same file is also the closing CTA backdrop, which sets the resolution it needs | Currently 631px wide, drawn at 1440px — needs ~2880px for retina",Low resolution,Resupply at 2880px wide or more
 10,FAQ,More questions,Structure,Both,4 items,Accordion extends freely,Ready to extend,Send additional Q&A pairs
 11,Closing CTA,Heading,Heading,Both,Start your three days by the sea,Max ~35 characters,Live,
 11,Closing CTA,Button,CTA,Both,Register,One word,BLOCKED — page missing,"Links to registration.html, not yet built"
