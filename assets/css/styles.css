@@ -524,6 +524,7 @@ video[data-ambient] { pointer-events: none; }
 .tab:hover { color: var(--navy-900); }
 .tab[aria-selected="true"] { color: var(--navy-900); border-bottom-color: var(--gold-500); }
 .tab__long { display: none; }
+.tab__icon { display: none; }
 
 .pillar-panel { position: relative; }
 
@@ -1128,12 +1129,15 @@ video[data-ambient] { pointer-events: none; }
   .delegate__name { font-size: 1.375rem; }
   .delegate__org { margin-top: 5px; font-size: .875rem; }
 
-  .split { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-12); margin-bottom: var(--space-6); align-items: start; }
-  .split--center { align-items: center; }
+  .split { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-12); margin-bottom: var(--space-6); align-items: stretch; }
+  .split--center { align-items: stretch; }
   .split .display { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.08; }
   .split p { max-width: 440px; font-size: 1rem; line-height: 1.7; }
-  .split .media { height: 200px; border-radius: var(--radius-2xl); }
-  .split--tall .media { height: 216px; }
+  /* The image must not contribute its intrinsic height, or it drives the row
+     instead of following the text. Absolute inside a stretched box does that. */
+  .split .media { height: 100%; min-height: 200px; border-radius: var(--radius-2xl); }
+  .split .media > img { position: absolute; inset: 0; }
+  .split--tall .media { height: auto; }
 
   .stats {
     grid-column: 2;
@@ -1152,17 +1156,74 @@ video[data-ambient] { pointer-events: none; }
   .pillars__intro .display { font-size: clamp(1.5rem, 2.6vw, 2.125rem); margin-bottom: 0; }
 
   .outcomes { display: flex; gap: var(--space-3); margin-top: var(--space-4); }
-  .tabs { gap: var(--space-8); margin: 0 0 var(--space-6); justify-content: space-between; }
-  .tab { padding-bottom: var(--space-4); font-size: .8125rem; letter-spacing: .06em; }
+  /* Segmented control: active tab filled navy with a gold underline. */
+  .tabs {
+    gap: 0;
+    flex-wrap: nowrap;
+    margin: 0 0 var(--space-6);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    overflow: hidden;
+    justify-content: stretch;
+  }
+  .tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    margin: 0;
+    padding: var(--space-4) var(--space-2);
+    border: 0;
+    border-left: 1px solid var(--gray-200);
+    border-bottom: 3px solid transparent;
+    background: var(--white);
+    color: var(--navy-900);
+    font-size: .75rem;
+    letter-spacing: .04em;
+    min-width: 0;
+    transition: background-color var(--dur-base) var(--ease), color var(--dur-base) var(--ease);
+  }
+  .tab:first-child { border-left: 0; }
+  .tab:hover { background: var(--gray-100); color: var(--navy-900); }
+  .tab[aria-selected="true"],
+  .tab[aria-selected="true"]:hover {
+    background: var(--navy-900);
+    color: var(--white);
+    border-bottom-color: var(--gold-500);
+  }
+  .tab:focus-visible { outline-offset: -4px; }
+  .tab__icon { display: none; flex: none; }
+  .tab__icon svg { width: 20px; height: 20px; }
   .tab__short { display: none; }
   .tab__long { display: inline; }
 
-  .pillar-panel { position: static; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.4fr); gap: var(--space-10); align-items: center; }
+  .pillar-panel {
+    position: static;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,1.4fr);
+    gap: var(--space-10);
+    align-items: center;
+    padding: var(--space-8);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+  }
   .pillar { aspect-ratio: 2 / 1; border-radius: var(--radius-2xl); order: 2; }
   .pillar__scrim { display: none; }
   .pillar__body { position: static; inset: auto; order: 1; }
   .pillar__num { margin-bottom: var(--space-4); font-size: 2.75rem; }
-  .pillar__title { margin-bottom: var(--space-4); font-size: 1.375rem; color: var(--navy-900); border-bottom: 1px solid var(--gray-200); padding-bottom: var(--space-4); }
+  .pillar__title { margin-bottom: 0; font-size: 1.375rem; color: var(--navy-900); }
+  .pillar__title::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 3px;
+    margin: var(--space-4) 0;
+    border-radius: 2px;
+    background: var(--gold-500);
+  }
   .pillar__desc { font-size: .9375rem; line-height: 1.7; color: var(--gray-700); }
 
   .methodology__title { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.08; margin-bottom: var(--space-6); }
@@ -1298,4 +1359,10 @@ video[data-ambient] { pointer-events: none; }
     font-weight: 700;
     letter-spacing: -.01em;
   }
+}
+
+/* The four pillar labels only fit one line with their icons above ~1300px. */
+@media (min-width: 1300px) {
+  .tab { white-space: nowrap; }
+  .tab__icon { display: flex; }
 }
