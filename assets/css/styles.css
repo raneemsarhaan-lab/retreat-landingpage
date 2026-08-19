@@ -577,7 +577,7 @@ video[data-ambient] { pointer-events: none; }
 .methodology > video { object-fit: cover; }
 .methodology__scrim { background: rgba(8,20,48,.85); }
 .methodology__inner { position: relative; }
-.methodology .eyebrow { color: rgba(255,255,255,.65); }
+.methodology .eyebrow { color: var(--white); }
 .methodology .display { color: var(--white); }
 .methodology__title { margin-bottom: var(--space-6); font-size: 1.625rem; line-height: 1.15; }
 
@@ -625,22 +625,22 @@ video[data-ambient] { pointer-events: none; }
 }
 
 .methodology__copy { display: none; }
-.methodology p.lede { margin-bottom: var(--space-4); font-size: .9375rem; line-height: 1.8; color: rgba(255,255,255,.78); }
+.methodology p.lede { margin-bottom: var(--space-4); font-size: .9375rem; line-height: 1.8; color: var(--white); }
 .methodology p.lede:last-of-type { margin-bottom: var(--space-10); }
 
 .values { display: flex; flex-direction: column; gap: 22px; }
 .values .display { font-size: 1.25rem; line-height: 1.2; margin-bottom: -2px; }
 .values .display { color: var(--white); }
-.value__name {
+.value .value__name {
   margin-bottom: 6px;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: .75rem;
   letter-spacing: .06em;
   text-transform: uppercase;
-  color: var(--gold-500);
+  color: var(--white);
 }
-.value p { font-size: .875rem; color: rgba(255,255,255,.7); }
+.value p { font-size: .875rem; color: var(--white); }
 .value svg { margin-bottom: var(--space-2); }
 
 /* =========================================================================
