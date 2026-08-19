@@ -122,13 +122,6 @@ button { font: inherit; color: inherit; }
 .btn--primary { background: var(--gold-500); color: var(--ink-900); }
 .btn--primary:hover { background: var(--white); color: var(--ink-900); }
 
-.btn--ghost {
-  background: transparent;
-  color: var(--white);
-  border: 1px solid rgba(255,255,255,.45);
-  font-weight: 500;
-}
-.btn--ghost:hover { border-color: var(--gold-500); color: var(--gold-500); }
 
 /* Media wells ------------------------------------------------------------
    Every <img>/<video> sits on a branded well, so a missing asset degrades to a
@@ -833,7 +826,6 @@ video[data-ambient] { pointer-events: none; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 22px var(--space-6);
-  margin-bottom: var(--space-6);
 }
 .fact__label {
   margin-bottom: 6px;
@@ -1131,7 +1123,7 @@ video[data-ambient] { pointer-events: none; }
   .venue__grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-12); align-items: center; }
   .venue__media { aspect-ratio: 4 / 3; margin-bottom: 0; border-radius: var(--radius-2xl); }
   .venue__body .display { margin-bottom: 30px; font-size: clamp(1.625rem, 2.8vw, 2.375rem); }
-  .facts { gap: var(--space-8) 36px; margin-bottom: 36px; }
+  .facts { gap: var(--space-8) 36px; }
   .fact__label { font-size: .6875rem; letter-spacing: .2em; }
   .fact__value { font-size: .9375rem; }
 

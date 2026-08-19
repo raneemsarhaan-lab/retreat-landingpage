@@ -47,6 +47,9 @@ Each of these is a deliberate change, listed so it can be reverted:
 - Mobile hero CTA was 42px tall and the pillar tabs 32px; both now meet the
   44px minimum touch target. The tabs keep their exact visual position — the
   extra hit area is padding pulled back by a negative margin.
+- Accommodation carries no Register button, and the closing CTA carries a
+  single "Register" rather than the artboards' Request-an-invite plus
+  How-to-attend pair. Both apply at every width.
 - The accommodation prev/next buttons were inert in the artboards — one image,
   two arrows. Now that four venue photos exist they drive a real scroll-snap
   carousel: swipeable on touch, buttons wrap around, and a live region announces
