@@ -578,6 +578,17 @@ video[data-ambient] { pointer-events: none; }
 .methodology__scrim { background: rgba(8,20,48,.85); }
 .methodology__inner { position: relative; }
 .methodology .eyebrow { color: var(--white); }
+
+/* Frosted panel behind the copy — same glass treatment as the desktop nav.
+   Kept light (8%) so it lifts off the footage without washing out white text. */
+.methodology__panel {
+  padding: var(--space-8) var(--space-5);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: var(--radius-2xl);
+  background: rgba(255, 255, 255, .08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
 .methodology .display { color: var(--white); }
 .methodology__title { margin-bottom: var(--space-6); font-size: 1.625rem; line-height: 1.15; }
 
@@ -1117,6 +1128,7 @@ video[data-ambient] { pointer-events: none; }
   .pillar__desc { font-size: .9375rem; line-height: 1.7; color: var(--gray-700); }
 
   .methodology__title { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.08; margin-bottom: var(--space-12); }
+  .methodology__panel { padding: var(--space-12); border-radius: 22px; }
   .methodology__cols { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-12); align-items: center; margin-bottom: 72px; }
   .methodology p.lede { max-width: 420px; margin-bottom: var(--space-5); font-size: 1.0625rem; }
   .methodology p.lede:last-of-type { margin-bottom: 0; }
