@@ -17,6 +17,27 @@ The page itself inlines these same paths rather than linking these files —
 inline SVG is what lets `currentColor` and the tab hover states work. These
 files are the shareable source of truth for the same set.
 
+## Colour variants for handover
+
+The files in the root of this folder use `currentColor` and are the source.
+Two fixed-colour copies sit alongside them for anyone working outside the
+codebase:
+
+| Folder | Contents |
+| --- | --- |
+| `orange/` | 19 SVG, colour hard-coded to `#F5AE2B` |
+| `white/` | 19 SVG, colour hard-coded to `#FFFFFF` |
+| `png/orange/`, `png/white/` | the same, rasterised to 512×512 PNG on a transparent background |
+
+White is for navy and photographic grounds only. The white PNGs look blank
+in a file browser — the background is transparent, not white.
+
+Regenerate all four folders, and the handover zip, with:
+
+```
+python3 tools/build-icon-bundle.py
+```
+
 ## The set
 
 | File | Used for |
