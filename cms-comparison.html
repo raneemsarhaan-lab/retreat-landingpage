@@ -1,0 +1,507 @@
+<title>Retreat CMS Parity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#F1F4F9; --card:#FFFFFF; --card-2:#F7F9FC;
+  --ink:#101C36; --ink-2:#4B5872; --ink-3:#78849C;
+  --rule:#DBE1EC; --rule-2:#E9EDF4;
+  --navy:#0F2C69; --gold:#9A6A0A; --mark:#F5AE2B;
+  --ok:#1D6B4C; --info:#2A56A0; --gap:#8F6208; --mismatch:#A8471A; --block:#9C1B21; --dead:#697389;
+  --ok-bg:#E3F0E9; --info-bg:#E3EAF7; --gap-bg:#F8EDD6; --mismatch-bg:#F9E6DA; --block-bg:#F9E1E2; --dead-bg:#EAECF2;
+  --shadow:0 1px 2px rgba(16,28,54,.05), 0 10px 28px -20px rgba(16,28,54,.45);
+  --cols:250px minmax(0,1.1fr) minmax(0,1.1fr) minmax(0,.95fr);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#090F1E; --card:#121A2D; --card-2:#172136;
+    --ink:#E9EDF6; --ink-2:#A7B2C9; --ink-3:#7B87A2;
+    --rule:#252F49; --rule-2:#1C2538;
+    --navy:#93AEE8; --gold:#E2B25A; --mark:#F5AE2B;
+    --ok:#63C79A; --info:#8AAAEC; --gap:#E0AE4E; --mismatch:#E8905F; --block:#F0767C; --dead:#8B95AC;
+    --ok-bg:#12301F; --info-bg:#152547; --gap-bg:#33260C; --mismatch-bg:#361B0F; --block-bg:#3A1417; --dead-bg:#1E2436;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -20px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#090F1E; --card:#121A2D; --card-2:#172136;
+  --ink:#E9EDF6; --ink-2:#A7B2C9; --ink-3:#7B87A2;
+  --rule:#252F49; --rule-2:#1C2538;
+  --navy:#93AEE8; --gold:#E2B25A; --mark:#F5AE2B;
+  --ok:#63C79A; --info:#8AAAEC; --gap:#E0AE4E; --mismatch:#E8905F; --block:#F0767C; --dead:#8B95AC;
+  --ok-bg:#12301F; --info-bg:#152547; --gap-bg:#33260C; --mismatch-bg:#361B0F; --block-bg:#3A1417; --dead-bg:#1E2436;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -20px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Source Sans 3",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px; margin:0 auto; padding:0 20px 96px}
+
+/* ---------- masthead ---------- */
+.mast{padding:56px 0 28px; border-bottom:1px solid var(--rule)}
+.mast__eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 14px;
+}
+.mast__eyebrow b{color:var(--mark); font-weight:500}
+h1{
+  font-family:Archivo,"Helvetica Neue",sans-serif; font-weight:800; font-size:clamp(30px,5vw,46px);
+  line-height:1.02; letter-spacing:-.02em; margin:0 0 16px; text-wrap:balance;
+}
+.mast__sub{max-width:62ch; margin:0; color:var(--ink-2); font-size:17px}
+.mast__meta{
+  margin-top:22px; display:flex; flex-wrap:wrap; gap:8px 26px;
+  font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-3);
+}
+.mast__meta span b{color:var(--ink-2); font-weight:500}
+
+/* ---------- summary / filters ---------- */
+.tools{padding:18px 0 0}
+.barwrap{position:sticky; top:0; z-index:20; background:var(--ground); padding:12px 0 12px}
+.barwrap::after{content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--rule)}
+.chips{display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; margin:0 0 14px}
+.chip{
+  appearance:none; text-align:left; cursor:pointer; font:inherit;
+  background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:11px 12px 12px; display:block; position:relative; overflow:hidden;
+  transition:border-color .12s, transform .12s, background .12s;
+}
+.chip::before{content:""; position:absolute; inset:0 auto 0 0; width:3px; background:currentColor}
+.chip--ok{color:var(--ok)} .chip--info{color:var(--info)} .chip--gap{color:var(--gap)}
+.chip--mismatch{color:var(--mismatch)} .chip--block{color:var(--block)} .chip--dead{color:var(--dead)}
+.chip__n{
+  display:block; font-family:Archivo,sans-serif; font-weight:800; font-size:26px; line-height:1;
+  letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:currentColor;
+}
+.chip__l{
+  display:block; margin-top:6px; font-family:Archivo,sans-serif; font-weight:600; font-size:12px;
+  letter-spacing:.05em; text-transform:uppercase; color:var(--ink);
+}
+.chip__d{display:block; margin-top:3px; font-size:12px; line-height:1.35; color:var(--ink-3)}
+.chip:hover{border-color:currentColor}
+.chip[aria-pressed="true"]{background:var(--card-2); border-color:currentColor; box-shadow:inset 0 0 0 1px currentColor}
+.chip:focus-visible{outline:2px solid var(--navy); outline-offset:2px}
+
+.bar{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+.search{
+  flex:1 1 260px; min-width:0; font:inherit; color:var(--ink);
+  background:var(--card); border:1px solid var(--rule); border-radius:9px; padding:9px 12px;
+}
+.search::placeholder{color:var(--ink-3)}
+.search:focus-visible{outline:2px solid var(--navy); outline-offset:1px; border-color:transparent}
+.reset{
+  appearance:none; cursor:pointer; font:inherit; font-size:13px; color:var(--ink-2);
+  background:transparent; border:1px solid var(--rule); border-radius:9px; padding:9px 14px;
+}
+.reset:hover{color:var(--ink); border-color:var(--ink-3)}
+.reset:focus-visible{outline:2px solid var(--navy); outline-offset:2px}
+.tally{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-3); margin-left:auto}
+
+/* ---------- column header ---------- */
+.colhead{
+  position:sticky; top:63px; z-index:15; background:var(--ground);
+  display:grid; grid-template-columns:var(--cols); gap:0 18px; align-items:end;
+  padding:22px 14px 8px; border-bottom:1px solid var(--rule);
+}
+.colhead__l{
+  font-family:Archivo,sans-serif; font-weight:600; font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3);
+}
+.colhead__l--a{color:var(--navy)}
+.colhead__l--b{color:var(--gold)}
+.colhead__l small{display:block; font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.04em; text-transform:none; color:var(--ink-3); font-weight:400; margin-top:3px}
+
+/* ---------- groups + rows ---------- */
+.grp{margin-top:26px}
+.grp__head{
+  display:flex; align-items:baseline; gap:12px; margin:0 0 8px; padding:0 14px;
+  font-family:Archivo,sans-serif; font-weight:600; font-size:15px; letter-spacing:-.005em;
+}
+.grp__kind{
+  font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:500; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3); border:1px solid var(--rule); border-radius:4px;
+  padding:2px 6px; white-space:nowrap;
+}
+.grp__name{color:var(--ink)}
+.grp__count{
+  margin-left:auto; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+.rows{background:var(--card); border:1px solid var(--rule); border-radius:12px; box-shadow:var(--shadow); overflow:hidden}
+.row{
+  display:grid; grid-template-columns:var(--cols); gap:2px 18px; align-items:start;
+  padding:13px 14px 14px 11px; border-top:1px solid var(--rule-2); border-left:3px solid transparent;
+}
+.rows > .row:first-child{border-top:0}
+.row--ok{border-left-color:var(--rule)}
+.row--info{border-left-color:var(--info)}
+.row--gap{border-left-color:var(--gap)}
+.row--mismatch{border-left-color:var(--mismatch)}
+.row--block{border-left-color:var(--block)}
+.row--dead{border-left-color:var(--dead)}
+.row--block,.row--mismatch{background:var(--card-2)}
+
+.field{
+  display:block; font-family:"IBM Plex Mono",monospace; font-size:12.5px; line-height:1.45;
+  color:var(--ink); overflow-wrap:anywhere;
+}
+.row__verdict{
+  display:inline-block; margin-top:6px; padding:1px 7px 2px; border-radius:4px;
+  font-family:Archivo,sans-serif; font-weight:600; font-size:10px; letter-spacing:.09em; text-transform:uppercase;
+}
+.v-ok{color:var(--ok); background:var(--ok-bg)}
+.v-info{color:var(--info); background:var(--info-bg)}
+.v-gap{color:var(--gap); background:var(--gap-bg)}
+.v-mismatch{color:var(--mismatch); background:var(--mismatch-bg)}
+.v-block{color:var(--block); background:var(--block-bg)}
+.v-dead{color:var(--dead); background:var(--dead-bg)}
+
+.cell{display:flex; gap:8px; font-size:13.5px; line-height:1.5; color:var(--ink-2)}
+.cell + .cell{border-left:1px solid var(--rule-2); padding-left:18px; margin-left:-18px}
+.dot{flex:0 0 auto; font-size:11px; line-height:1.6; width:11px; text-align:center}
+.d-yes{color:var(--ok)} .d-no{color:var(--ink-3)} .d-part{color:var(--gap)} .d-na{color:var(--ink-3)}
+.cell__t{min-width:0}
+.row__action{font-size:13px; line-height:1.5; color:var(--ink-3); font-style:italic}
+.row__action .none{font-style:normal; opacity:.5}
+
+.empty{display:none; padding:48px 14px; text-align:center; color:var(--ink-3)}
+.is-empty .empty{display:block}
+.grp[hidden]{display:none}
+
+/* ---------- legend / foot ---------- */
+.foot{margin-top:44px; padding-top:20px; border-top:1px solid var(--rule); display:flex; flex-wrap:wrap; gap:10px 28px; font-size:12.5px; color:var(--ink-3)}
+.foot b{font-weight:600; color:var(--ink-2)}
+.foot .key{display:inline-flex; align-items:center; gap:6px}
+
+@media (max-width:1020px){
+  .chips{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .colhead{display:none}
+  .row{grid-template-columns:1fr; gap:8px; padding:16px 14px 17px 11px}
+  .cell + .cell{border-left:0; padding-left:0; margin-left:0}
+  .cell::before{
+    content:attr(data-side); flex:0 0 74px; font-family:Archivo,sans-serif; font-weight:600;
+    font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); padding-top:3px;
+  }
+  .row__action{padding-left:82px}
+  .row__action--none{display:none}
+  .barwrap{position:static}
+  .bar{gap:8px}
+  .tally{margin-left:0}
+}
+@media (max-width:560px){
+  .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chip__d{display:none}
+  .cell{flex-wrap:wrap}
+  .cell::before{flex-basis:100%}
+  .row__action{padding-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="mast__eyebrow">The Strategy Retreat 2026 &nbsp;<b>&#9679;</b>&nbsp; CMS reconciliation</p>
+  <h1>Two builds of the same home page, field by field.</h1>
+  <p class="mast__sub">The Retreat column is the Payload CMS described in the handover. The Landing page column is
+  the static build on this branch. Every row is one editable thing: where the two agree there is nothing to do,
+  and where they do not, the last column says what the decision is.</p>
+  <div class="mast__meta">
+    <span><b>75</b> rows compared</span>
+    <span><b>47</b> already aligned</span>
+    <span><b>28</b> needing a decision</span>
+    <span>source: <b>cms-comparison.csv</b></span>
+  </div>
+</header>
+
+<div class="tools">
+  <div class="chips"><button class="chip chip--block" type="button" data-fam="block" aria-pressed="false"><span class="chip__n">2</span><span class="chip__l">Blocking</span><span class="chip__d">Ships broken unless this is resolved first</span></button><button class="chip chip--mismatch" type="button" data-fam="mismatch" aria-pressed="false"><span class="chip__n">5</span><span class="chip__l">Disagreement</span><span class="chip__d">Both sides carry it and they do not agree</span></button><button class="chip chip--gap" type="button" data-fam="gap" aria-pressed="false"><span class="chip__n">8</span><span class="chip__l">Gap</span><span class="chip__d">Something the page needs that nothing supplies</span></button><button class="chip chip--info" type="button" data-fam="info" aria-pressed="false"><span class="chip__n">11</span><span class="chip__l">One side only</span><span class="chip__d">Modelled in one build and not the other</span></button><button class="chip chip--dead" type="button" data-fam="dead" aria-pressed="false"><span class="chip__n">2</span><span class="chip__l">Dead</span><span class="chip__d">Modelled but rendering nothing, either side</span></button><button class="chip chip--ok" type="button" data-fam="ok" aria-pressed="false"><span class="chip__n">47</span><span class="chip__l">Aligned</span><span class="chip__d">Present on both sides, nothing to decide</span></button></div>
+</div>
+
+<div class="barwrap">
+  <div class="bar">
+    <input class="search" id="q" type="search" placeholder="Filter by field, block or note&hellip;" aria-label="Filter rows">
+    <button class="reset" id="reset" type="button">Clear filters</button>
+    <span class="tally" id="tally" role="status">75 of 75 rows</span>
+  </div>
+</div>
+
+<div class="colhead">
+  <div class="colhead__l">Field<small>what an editor touches</small></div>
+  <div class="colhead__l colhead__l--a">Retreat<small>handover CMS</small></div>
+  <div class="colhead__l colhead__l--b">Landing page<small>this build</small></div>
+  <div class="colhead__l">Action</div>
+</div>
+
+<main id="list">
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Global</span><span class="grp__name">retreat</span><span class="grp__count">2</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="global: retreat dates / location yes — the facts every page repeats yes — in the hero glass card both point the hero card at this global rather than hardcoding"><div class="row__item"><span class="field">Dates / location</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — the facts every page repeats</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — in the hero glass card</span></div><div class="row__action">Point the hero card at this global rather than hardcoding</div></article>
+<article class="row row--info" data-fam="info" data-q="global: retreat whatsapp number yes no retreat only nothing on this page uses it"><div class="row__item"><span class="field">WhatsApp number</span><span class="row__verdict v-info">Retreat only</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">No</span></div><div class="row__action">Nothing on this page uses it</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Global</span><span class="grp__name">navigation</span><span class="grp__count">4</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="global: navigation nav labels yes yes — 3 desktop links both "><div class="row__item"><span class="field">Nav labels</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3 desktop links</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--ok" data-fam="ok" data-q="global: navigation primary cta yes yes — &quot;register&quot;, 3 placements both model once, reuse"><div class="row__item"><span class="field">Primary CTA</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — &quot;Register&quot;, 3 placements</span></div><div class="row__action">Model once, reuse</div></article>
+<article class="row row--ok" data-fam="ok" data-q="global: navigation side tab yes yes — floating register tab both already accounted for. do not rebuild"><div class="row__item"><span class="field">Side tab</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — floating Register tab</span></div><div class="row__action">Already accounted for. Do not rebuild</div></article>
+<article class="row row--ok" data-fam="ok" data-q="global: navigation brochure pdf yes yes — &quot;download pdf&quot; link both file itself still missing on this side"><div class="row__item"><span class="field">Brochure PDF</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — &quot;Download PDF&quot; link</span></div><div class="row__action">File itself still missing on this side</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Global</span><span class="grp__name">footer</span><span class="grp__count">3</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="global: footer columns yes yes — 3 columns both desktop only here; hidden below 900px"><div class="row__item"><span class="field">Columns</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3 columns</span></div><div class="row__action">DESKTOP ONLY here; hidden below 900px</div></article>
+<article class="row row--ok" data-fam="ok" data-q="global: footer slogan yes yes — the blurb both "><div class="row__item"><span class="field">Slogan</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — the blurb</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--info" data-fam="info" data-q="global: footer social order yes no — no social links retreat only decide whether the home page carries them"><div class="row__item"><span class="field">Social order</span><span class="row__verdict v-info">Retreat only</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">No — no social links</span></div><div class="row__action">Decide whether the home page carries them</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Global</span><span class="grp__name">date-strip</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--mismatch" data-fam="mismatch" data-q="global: date-strip date/venue strip yes — &quot;under each banner&quot; no — date sits inside the hero conflict both would render. pick one for the home page"><div class="row__item"><span class="field">Date/venue strip</span><span class="row__verdict v-mismatch">CONFLICT</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — &quot;under each banner&quot;</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">No — date sits inside the hero</span></div><div class="row__action">Both would render. Pick one for the home page</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Global</span><span class="grp__name">seo</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="global: seo title / description / og image yes hardcoded in &lt;head&gt; both move to the global. note: this page&#x27;s &lt;title&gt; is stale — still &quot;step away. think strategically.&quot;"><div class="row__item"><span class="field">Title / description / OG image</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Hardcoded in &lt;head&gt;</span></div><div class="row__action">Move to the global. NOTE: this page&#x27;s &lt;title&gt; is stale — still &quot;Step Away. Think Strategically.&quot;</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Global</span><span class="grp__name">form-copy</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--info" data-fam="info" data-q="global: form-copy registration form copy yes no — no form on this page retreat only registration is a separate route"><div class="row__item"><span class="field">Registration form copy</span><span class="row__verdict v-info">Retreat only</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">No — no form on this page</span></div><div class="row__action">Registration is a separate route</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Global</span><span class="grp__name">messaging</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--info" data-fam="info" data-q="global: messaging whatsapp message yes no retreat only "><div class="row__item"><span class="field">WhatsApp message</span><span class="row__verdict v-info">Retreat only</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">No</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">hero</span><span class="grp__count">7</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="hero eyebrow yes yes — &quot;an exclusive invite-only retreat&quot; both "><div class="row__item"><span class="field">eyebrow</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — &quot;An exclusive invite-only retreat&quot;</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--mismatch" data-fam="mismatch" data-q="hero h1 yes — { lines[], accent } yes — but breaks by breakpoint mismatch 3 stacked lines under 900px, 1 line above. a fixed lines[] cannot express it. needs a decision"><div class="row__item"><span class="field">h1</span><span class="row__verdict v-mismatch">MISMATCH</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — { lines[], accent }</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — but breaks by BREAKPOINT</span></div><div class="row__action">3 stacked lines under 900px, 1 line above. A fixed lines[] cannot express it. Needs a decision</div></article>
+<article class="row row--ok" data-fam="ok" data-q="hero marqueeword yes (trailing space required) yes — same mechanism both same trailing-space dependency"><div class="row__item"><span class="field">marqueeWord</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes (trailing space required)</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — same mechanism</span></div><div class="row__action">Same trailing-space dependency</div></article>
+<article class="row row--info" data-fam="info" data-q="hero marqueeduration yes css variable, not a field retreat richer adopt the field; this page hardcodes 34s / 44s"><div class="row__item"><span class="field">marqueeDuration</span><span class="row__verdict v-info">Retreat richer</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">CSS variable, not a field</span></div><div class="row__action">Adopt the field; this page hardcodes 34s / 44s</div></article>
+<article class="row row--ok" data-fam="ok" data-q="hero image + alt yes yes — alt empty (decorative) both source is 640px wide and drawn at 1440px"><div class="row__item"><span class="field">image + alt</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — alt empty (decorative)</span></div><div class="row__action">Source is 640px wide and drawn at 1440px</div></article>
+<article class="row row--info" data-fam="info" data-q="hero scrimnote yes — read-only editor note scrim present, note absent retreat richer carry the note across; the constraint is identical"><div class="row__item"><span class="field">scrimNote</span><span class="row__verdict v-info">Retreat richer</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — read-only editor note</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Scrim present, note absent</span></div><div class="row__action">Carry the note across; the constraint is identical</div></article>
+<article class="row row--info" data-fam="info" data-q="hero date / location card not in this group yes — glass card landing only should read the `retreat` global. see date-strip conflict"><div class="row__item"><span class="field">Date / location card</span><span class="row__verdict v-info">Landing only</span></div><div class="cell" data-side="Retreat"><span class="dot d-no" title="Absent">○</span><span class="cell__t">Not in this group</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — glass card</span></div><div class="row__action">Should read the `retreat` global. See date-strip conflict</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">leadersRail</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--dead" data-fam="dead" data-q="leadersrail heading, sub, ctalabel, ctahref yes — dead, renders nothing not used both dead this page does not revive it. phase 6 deletes"><div class="row__item"><span class="field">heading, sub, ctaLabel, ctaHref</span><span class="row__verdict v-dead">Both dead</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — DEAD, renders nothing</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">Not used</span></div><div class="row__action">This page does not revive it. Phase 6 deletes</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">editorial</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--dead" data-fam="dead" data-q="editorial heading, body, images, alts yes — dead, renders nothing not used both dead as above"><div class="row__item"><span class="field">heading, body, images, alts</span><span class="row__verdict v-dead">Both dead</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — DEAD, renders nothing</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">Not used</span></div><div class="row__action">As above</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">delegates</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="delegates eyebrow / heading / sub yes yes — side label, heading, intro both side label here reads &quot;delegates&quot;; nav calls it &quot;leaders&quot;"><div class="row__item"><span class="field">eyebrow / heading / sub</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — side label, heading, intro</span></div><div class="row__action">Side label here reads &quot;Delegates&quot;; nav calls it &quot;Leaders&quot;</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">about</span><span class="grp__count">2</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="about eyebrow yes yes both "><div class="row__item"><span class="field">eyebrow</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--ok" data-fam="ok" data-q="about splits[] — heading, body, image, alt yes yes — 2 splits both body length drives photo height on desktop"><div class="row__item"><span class="field">splits[] — heading, body, image, alt</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 2 splits</span></div><div class="row__action">Body length drives photo height on desktop</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">pillars</span><span class="grp__count">2</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="pillars eyebrow / heading yes yes both "><div class="row__item"><span class="field">eyebrow / heading</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--ok" data-fam="ok" data-q="pillars image + alt yes yes both alt has no source on either side"><div class="row__item"><span class="field">image + alt</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action">alt has no source on either side</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">methodology</span><span class="grp__count">7</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="methodology eyebrow / heading yes yes both "><div class="row__item"><span class="field">eyebrow / heading</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--ok" data-fam="ok" data-q="methodology corelabel yes yes — &quot;lifetime experience&quot; both "><div class="row__item"><span class="field">coreLabel</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — &quot;Lifetime Experience&quot;</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--ok" data-fam="ok" data-q="methodology body[] yes yes — 2 paragraphs both desktop only here"><div class="row__item"><span class="field">body[]</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 2 paragraphs</span></div><div class="row__action">DESKTOP ONLY here</div></article>
+<article class="row row--ok" data-fam="ok" data-q="methodology valuesheading yes yes both "><div class="row__item"><span class="field">valuesHeading</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--ok" data-fam="ok" data-q="methodology film yes yes — the sea loop both "><div class="row__item"><span class="field">film</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — the sea loop</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--gap" data-fam="gap" data-q="methodology poster yes — required by hook no poster on any film gap every film here needs a first-frame still"><div class="row__item"><span class="field">poster</span><span class="row__verdict v-gap">GAP</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — required by hook</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">No poster on any film</span></div><div class="row__action">Every film here needs a first-frame still</div></article>
+<article class="row row--info" data-fam="info" data-q="methodology frosted panel behind the copy no yes — css landing only presentation, not content. no field needed"><div class="row__item"><span class="field">Frosted panel behind the copy</span><span class="row__verdict v-info">Landing only</span></div><div class="cell" data-side="Retreat"><span class="dot d-no" title="Absent">○</span><span class="cell__t">No</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — CSS</span></div><div class="row__action">Presentation, not content. No field needed</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">experience</span><span class="grp__count">6</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="experience eyebrow / heading / sub yes yes both sub sets on two lines — model as two fields"><div class="row__item"><span class="field">eyebrow / heading / sub</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action">Sub sets on two lines — model as two fields</div></article>
+<article class="row row--ok" data-fam="ok" data-q="experience quoteslabel yes yes — mobile rail label both mobile only here"><div class="row__item"><span class="field">quotesLabel</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — mobile rail label</span></div><div class="row__action">MOBILE ONLY here</div></article>
+<article class="row row--ok" data-fam="ok" data-q="experience featuretitle / featuresub yes yes both "><div class="row__item"><span class="field">featureTitle / featureSub</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--ok" data-fam="ok" data-q="experience featurefilm yes yes both box locked to 16:9 to match the file"><div class="row__item"><span class="field">featureFilm</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action">Box LOCKED to 16:9 to match the file</div></article>
+<article class="row row--gap" data-fam="gap" data-q="experience featureposter yes no gap "><div class="row__item"><span class="field">featurePoster</span><span class="row__verdict v-gap">GAP</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">No</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--info" data-fam="info" data-q="experience play controls / dots / mobile peek not described yes landing only behaviour, not content"><div class="row__item"><span class="field">Play controls / dots / mobile peek</span><span class="row__verdict v-info">Landing only</span></div><div class="cell" data-side="Retreat"><span class="dot d-no" title="Absent">○</span><span class="cell__t">Not described</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action">Behaviour, not content</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">accommodation</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="accommodation eyebrow / heading yes yes both "><div class="row__item"><span class="field">eyebrow / heading</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">partners</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="partners heading yes yes — side label both "><div class="row__item"><span class="field">heading</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — side label</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">location</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--info" data-fam="info" data-q="location visible / heading / maplabel yes no section at all retreat only set visible:false, or the section needs designing — it is in no artboard supplied here"><div class="row__item"><span class="field">visible / heading / mapLabel</span><span class="row__verdict v-info">Retreat only</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">NO SECTION AT ALL</span></div><div class="row__action">Set visible:false, or the section needs designing — it is in no artboard supplied here</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">faq</span><span class="grp__count">2</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="faq heading / sub yes yes both "><div class="row__item"><span class="field">heading / sub</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--ok" data-fam="ok" data-q="faq image yes yes both desktop only here"><div class="row__item"><span class="field">image</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action">DESKTOP ONLY here</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Block</span><span class="grp__name">finalCta</span><span class="grp__count">3</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="finalcta heading yes yes both "><div class="row__item"><span class="field">heading</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--ok" data-fam="ok" data-q="finalcta primarylabel / primaryhref yes yes — single &quot;register&quot; both group already matches: this page dropped the secondary button"><div class="row__item"><span class="field">primaryLabel / primaryHref</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — single &quot;Register&quot;</span></div><div class="row__action">Group already matches: this page dropped the secondary button</div></article>
+<article class="row row--ok" data-fam="ok" data-q="finalcta image yes yes both "><div class="row__item"><span class="field">image</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">leaders</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: leaders delegate rail yes — onhomerail, 4 of 8 yes — 4 cards both portraits: 3 of 4 missing here"><div class="row__item"><span class="field">Delegate rail</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — onHomeRail, 4 of 8</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 4 cards</span></div><div class="row__action">Portraits: 3 of 4 missing here</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">content-pillars</span><span class="grp__count">2</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: content-pillars tabs and panels yes — order yes — 4 both "><div class="row__item"><span class="field">Tabs and panels</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — order</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 4</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--gap" data-fam="gap" data-q="collection: content-pillars short label for mobile unverified yes — required (≤12 chars) gap? mobile tabs need a second, shorter label"><div class="row__item"><span class="field">Short label for mobile</span><span class="row__verdict v-gap">GAP?</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Unverified</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — required (≤12 chars)</span></div><div class="row__action">Mobile tabs need a second, shorter label</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">methodology-nodes</span><span class="grp__count">2</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: methodology-nodes diagram circles yes — 3 yes — 3 + core both "><div class="row__item"><span class="field">Diagram circles</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3 + core</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--gap" data-fam="gap" data-q="collection: methodology-nodes two-line labels unverified yes — every node gap? &quot;sharing&quot; / &quot;knowledge&quot; — two fields, not one string"><div class="row__item"><span class="field">Two-line labels</span><span class="row__verdict v-gap">GAP?</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Unverified</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — every node</span></div><div class="row__action">&quot;Sharing&quot; / &quot;Knowledge&quot; — two fields, not one string</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">values</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: values values list yes — 3 yes — 3 both "><div class="row__item"><span class="field">Values list</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">csuite-outcomes</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: csuite-outcomes outcomes list yes yes — 5 bullets both desktop only here"><div class="row__item"><span class="field">Outcomes list</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 5 bullets</span></div><div class="row__action">DESKTOP ONLY here</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">home-stats</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: home-stats statistics row yes yes — 3 both "><div class="row__item"><span class="field">Statistics row</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">stay-rows</span><span class="grp__count">2</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: stay-rows accommodation facts yes — 4 yes — 4 both "><div class="row__item"><span class="field">Accommodation facts</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 4</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 4</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--gap" data-fam="gap" data-q="collection: stay-rows second value line unverified yes — 3 of 4 need it gap? model as two fields"><div class="row__item"><span class="field">Second value line</span><span class="row__verdict v-gap">GAP?</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Unverified</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3 of 4 need it</span></div><div class="row__action">Model as two fields</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">venue-photos</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: venue-photos venue carousel yes yes — 4, with prev/next + live counter both "><div class="row__item"><span class="field">Venue carousel</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 4, with prev/next + live counter</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">partners</span><span class="grp__count">2</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: partners logo band yes — 3 yes — 3 both all 3 logo files missing here"><div class="row__item"><span class="field">Logo band</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3</span></div><div class="row__action">All 3 logo files missing here</div></article>
+<article class="row row--gap" data-fam="gap" data-q="collection: partners per-logo display height unverified yes — 20 / 42 / 32px gap? or normalise in css and drop the idea"><div class="row__item"><span class="field">Per-logo display height</span><span class="row__verdict v-gap">GAP?</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Unverified</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 20 / 42 / 32px</span></div><div class="row__action">Or normalise in CSS and drop the idea</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">faq-entries</span><span class="grp__count">1</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: faq-entries accordion yes — 4 yes — 4 both "><div class="row__item"><span class="field">Accordion</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 4</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 4</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Collection</span><span class="grp__name">testimonials</span><span class="grp__count">3</span></h2>
+<div class="rows">
+<article class="row row--ok" data-fam="ok" data-q="collection: testimonials quotation rail yes — consent: granted gate yes — 3 reflections both "><div class="row__item"><span class="field">Quotation rail</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — consent: granted gate</span></div><div class="cell" data-side="Landing"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes — 3 reflections</span></div><div class="row__action row__action--none"><span class="none">—</span></div></article>
+<article class="row row--block" data-fam="block" data-q="collection: testimonials zero-state when consent withheld rail renders empty by design not handled blocking all 4 rows are unconfirmed today, so the rail is empty. this page shows a labelled, dotted, empty band"><div class="row__item"><span class="field">Zero-state when consent withheld</span><span class="row__verdict v-block">BLOCKING</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Rail renders empty by design</span></div><div class="cell" data-side="Landing"><span class="dot d-no" title="Absent">○</span><span class="cell__t">NOT HANDLED</span></div><div class="row__action">All 4 rows are unconfirmed today, so the rail is empty. This page shows a labelled, dotted, empty band</div></article>
+<article class="row row--gap" data-fam="gap" data-q="collection: testimonials film aspect / orientation no — sharp cannot read mp4 dimensions cards are landscape; films are 720x1280 vertical gap store the aspect or enforce one on upload"><div class="row__item"><span class="field">Film aspect / orientation</span><span class="row__verdict v-gap">GAP</span></div><div class="cell" data-side="Retreat"><span class="dot d-no" title="Absent">○</span><span class="cell__t">No — sharp cannot read MP4 dimensions</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Cards are landscape; films are 720x1280 vertical</span></div><div class="row__action">Store the aspect or enforce one on upload</div></article>
+</div></section>
+<section class="grp">
+<h2 class="grp__head"><span class="grp__kind">Cross-cutting</span><span class="grp__name">Applies to every block</span><span class="grp__count">10</span></h2>
+<div class="rows">
+<article class="row row--block" data-fam="block" data-q="cross-cutting empty field tolerance none — 41 accesses, no optional chaining n/a blocking every field added here must be filled before deploy or /retreat 500s"><div class="row__item"><span class="field">Empty field tolerance</span><span class="row__verdict v-block">BLOCKING</span></div><div class="cell" data-side="Retreat"><span class="dot d-no" title="Absent">○</span><span class="cell__t">None — 41 accesses, no optional chaining</span></div><div class="cell" data-side="Landing"><span class="dot d-na" title="Not applicable">–</span><span class="cell__t">n/a</span></div><div class="row__action">Every field added here must be filled before deploy or /retreat 500s</div></article>
+<article class="row row--mismatch" data-fam="mismatch" data-q="cross-cutting typeface kohinoor, no weight 900 available archivo/inter substitute; 13 rules use 900 mismatch adopt their tokens.css; delete the reconstructed one here, then re-check heading rhythm"><div class="row__item"><span class="field">Typeface</span><span class="row__verdict v-mismatch">MISMATCH</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Kohinoor, no weight 900 available</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Archivo/Inter substitute; 13 rules use 900</span></div><div class="row__action">Adopt their tokens.css; delete the reconstructed one here, then re-check heading rhythm</div></article>
+<article class="row row--info" data-fam="info" data-q="cross-cutting design tokens src/styles/tokens.css, unit-tested against design-system §16 assets/css/tokens.css, inferred from artboards retreat authoritative theirs wins outright"><div class="row__item"><span class="field">Design tokens</span><span class="row__verdict v-info">Retreat authoritative</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">src/styles/tokens.css, unit-tested against design-system §16</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">assets/css/tokens.css, inferred from artboards</span></div><div class="row__action">Theirs wins outright</div></article>
+<article class="row row--gap" data-fam="gap" data-q="cross-cutting breakpoint-only fields no concept of it 6 fields render at one breakpoint only gap add field help or editors write copy that never appears"><div class="row__item"><span class="field">Breakpoint-only fields</span><span class="row__verdict v-gap">GAP</span></div><div class="cell" data-side="Retreat"><span class="dot d-no" title="Absent">○</span><span class="cell__t">No concept of it</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">6 fields render at one breakpoint only</span></div><div class="row__action">Add field help or editors write copy that never appears</div></article>
+<article class="row row--ok" data-fam="ok" data-q="cross-cutting media two-arm field (designkey | upload) yes committed files both use designkey for these"><div class="row__item"><span class="field">Media two-arm field (designKey | upload)</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-yes" title="Present">●</span><span class="cell__t">Yes</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Committed files</span></div><div class="row__action">Use designKey for these</div></article>
+<article class="row row--ok" data-fam="ok" data-q="cross-cutting draft vs published _status: published required n/a note a write without it lands as a draft and changes nothing live"><div class="row__item"><span class="field">Draft vs published</span><span class="row__verdict v-ok">Note</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">_status: published required</span></div><div class="cell" data-side="Landing"><span class="dot d-na" title="Not applicable">–</span><span class="cell__t">n/a</span></div><div class="row__action">A write without it lands as a draft and changes nothing live</div></article>
+<article class="row row--ok" data-fam="ok" data-q="cross-cutting captions on played films open item same gap both films carry speech; no captions either side"><div class="row__item"><span class="field">Captions on played films</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Open item</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Same gap</span></div><div class="row__action">Films carry speech; no captions either side</div></article>
+<article class="row row--mismatch" data-fam="mismatch" data-q="cross-cutting gold discipline &quot;gold as punctuation only&quot; 26 css rules reference gold review deliberate pass needed before ship"><div class="row__item"><span class="field">Gold discipline</span><span class="row__verdict v-mismatch">REVIEW</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">&quot;Gold as punctuation only&quot;</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">26 CSS rules reference gold</span></div><div class="row__action">Deliberate pass needed before ship</div></article>
+<article class="row row--ok" data-fam="ok" data-q="cross-cutting icons hand-drawn 24-viewbox outline, never a library same both already compliant"><div class="row__item"><span class="field">Icons</span><span class="row__verdict v-ok">Both</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Hand-drawn 24-viewBox outline, never a library</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">Same</span></div><div class="row__action">Already compliant</div></article>
+<article class="row row--mismatch" data-fam="mismatch" data-q="cross-cutting section order … experience, accommodation, partners, location, faq … experience, partners, accommodation, faq mismatch partners and accommodation are swapped. admin group order is the editor&#x27;s mental model — make them agree"><div class="row__item"><span class="field">Section order</span><span class="row__verdict v-mismatch">MISMATCH</span></div><div class="cell" data-side="Retreat"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">… Experience, Accommodation, Partners, Location, FAQ</span></div><div class="cell" data-side="Landing"><span class="dot d-part" title="Partial or unverified">◐</span><span class="cell__t">… Experience, Partners, Accommodation, FAQ</span></div><div class="row__action">Partners and Accommodation are swapped. Admin group order is the editor&#x27;s mental model — make them agree</div></article>
+</div></section>
+<p class="empty">No rows match that filter.</p>
+</main>
+
+<footer class="foot">
+  <span class="key"><b>&#9679;</b> present</span>
+  <span class="key"><b>&#9680;</b> partial or unverified</span>
+  <span class="key"><b>&#9675;</b> absent</span>
+  <span class="key"><b>&#8211;</b> not applicable</span>
+  <span>Rows follow the CMS admin order: globals, then the home page blocks top to bottom, then collections, then what cuts across all of them.</span>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var list = document.getElementById('list');
+  var q = document.getElementById('q');
+  var tally = document.getElementById('tally');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var rows = Array.prototype.slice.call(list.querySelectorAll('.row'));
+  var groups = Array.prototype.slice.call(list.querySelectorAll('.grp'));
+  var total = rows.length;
+  var active = {};
+
+  function apply() {
+    var text = q.value.trim().toLowerCase();
+    var fams = Object.keys(active).filter(function (k) { return active[k]; });
+    var shown = 0;
+    rows.forEach(function (row) {
+      var ok = (!fams.length || fams.indexOf(row.dataset.fam) > -1) &&
+               (!text || row.dataset.q.indexOf(text) > -1);
+      row.hidden = !ok;
+      if (ok) shown++;
+    });
+    groups.forEach(function (g) {
+      g.hidden = !g.querySelector('.row:not([hidden])');
+    });
+    list.classList.toggle('is-empty', shown === 0);
+    tally.textContent = shown === total ? total + ' of ' + total + ' rows'
+                                        : shown + ' of ' + total + ' rows';
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var fam = chip.dataset.fam;
+      active[fam] = !active[fam];
+      chip.setAttribute('aria-pressed', active[fam] ? 'true' : 'false');
+      apply();
+    });
+  });
+
+  q.addEventListener('input', apply);
+  document.getElementById('reset').addEventListener('click', function () {
+    active = {};
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+    q.value = '';
+    apply();
+    q.focus();
+  });
+
+  apply();
+})();
+</script>
