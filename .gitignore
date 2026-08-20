@@ -1,0 +1,4 @@
+node_modules/
+
+# Icon bundle is regenerated, not tracked
+strategy-retreat-icons.zip
