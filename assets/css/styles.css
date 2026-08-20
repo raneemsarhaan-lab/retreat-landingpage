@@ -440,22 +440,22 @@ video[data-ambient] { pointer-events: none; }
    ========================================================================= */
 .split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
   align-items: center;
   margin-bottom: var(--space-8);
 }
-.split .display { margin-bottom: var(--space-3); font-size: 1.0625rem; }
-.split p { font-size: .8125rem; }
+.split .display { margin-bottom: var(--space-4); font-size: 1.0625rem; }
+.split p { font-size: .9375rem; line-height: 1.7; }
 .split .media { height: 220px; }
 
 .stats {
   grid-column: 1 / -1;
   display: flex;
-  gap: clamp(28px, 9vw, 72px);
-  justify-content: center;
-  margin-top: var(--space-8);
-  text-align: center;
+  gap: clamp(24px, 8vw, 64px);
+  justify-content: flex-start;
+  margin-top: var(--space-6);
+  text-align: left;
 }
 .stat { flex: 0 0 auto; }
 .stat__value {
@@ -1344,17 +1344,17 @@ video[data-ambient] { pointer-events: none; }
   .exp__intro .display,
   .venue__body .display,
   .faq__intro .display,
-  .cta .display {
+  .cta .display,
+  .split .display {
     font-size: clamp(2rem, 8.5vw, 2.375rem);
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -.01em;
   }
 
-  /* The About sub-heads and the values heading stay subordinate — they sit in
-     half-width columns where the hero size would not fit — but take the same
-     weight and tracking so the page reads as one family. */
-  .split .display,
+  /* The values heading stays subordinate — it sits above a three-up grid where
+     the hero size would not fit — but takes the same weight and tracking so the
+     page reads as one family. */
   .values .display {
     font-weight: 700;
     letter-spacing: -.01em;
