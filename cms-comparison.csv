@@ -1,0 +1,76 @@
+﻿Block,Item,Retreat (handover CMS),Landing page (this build),Verdict,Action
+Global: retreat,Dates / location,Yes — the facts every page repeats,Yes — in the hero glass card,Both,Point the hero card at this global rather than hardcoding
+Global: retreat,WhatsApp number,Yes,No,Retreat only,Nothing on this page uses it
+Global: navigation,Nav labels,Yes,Yes — 3 desktop links,Both,
+Global: navigation,Primary CTA,Yes,"Yes — ""Register"", 3 placements",Both,"Model once, reuse"
+Global: navigation,Side tab,Yes,Yes — floating Register tab,Both,Already accounted for. Do not rebuild
+Global: navigation,Brochure PDF,Yes,"Yes — ""Download PDF"" link",Both,File itself still missing on this side
+Global: footer,Columns,Yes,Yes — 3 columns,Both,DESKTOP ONLY here; hidden below 900px
+Global: footer,Slogan,Yes,Yes — the blurb,Both,
+Global: footer,Social order,Yes,No — no social links,Retreat only,Decide whether the home page carries them
+Global: date-strip,Date/venue strip,"Yes — ""under each banner""",No — date sits inside the hero,CONFLICT,Both would render. Pick one for the home page
+Global: seo,Title / description / OG image,Yes,Hardcoded in <head>,Both,"Move to the global. NOTE: this page's <title> is stale — still ""Step Away. Think Strategically."""
+Global: form-copy,Registration form copy,Yes,No — no form on this page,Retreat only,Registration is a separate route
+Global: messaging,WhatsApp message,Yes,No,Retreat only,
+hero,eyebrow,Yes,"Yes — ""An exclusive invite-only retreat""",Both,
+hero,h1,"Yes — { lines[], accent }",Yes — but breaks by BREAKPOINT,MISMATCH,"3 stacked lines under 900px, 1 line above. A fixed lines[] cannot express it. Needs a decision"
+hero,marqueeWord,Yes (trailing space required),Yes — same mechanism,Both,Same trailing-space dependency
+hero,marqueeDuration,Yes,"CSS variable, not a field",Retreat richer,Adopt the field; this page hardcodes 34s / 44s
+hero,image + alt,Yes,Yes — alt empty (decorative),Both,Source is 640px wide and drawn at 1440px
+hero,scrimNote,Yes — read-only editor note,"Scrim present, note absent",Retreat richer,Carry the note across; the constraint is identical
+hero,Date / location card,Not in this group,Yes — glass card,Landing only,Should read the `retreat` global. See date-strip conflict
+leadersRail,"heading, sub, ctaLabel, ctaHref","Yes — DEAD, renders nothing",Not used,Both dead,This page does not revive it. Phase 6 deletes
+editorial,"heading, body, images, alts","Yes — DEAD, renders nothing",Not used,Both dead,As above
+delegates,eyebrow / heading / sub,Yes,"Yes — side label, heading, intro",Both,"Side label here reads ""Delegates""; nav calls it ""Leaders"""
+about,eyebrow,Yes,Yes,Both,
+about,"splits[] — heading, body, image, alt",Yes,Yes — 2 splits,Both,Body length drives photo height on desktop
+pillars,eyebrow / heading,Yes,Yes,Both,
+pillars,image + alt,Yes,Yes,Both,alt has no source on either side
+methodology,eyebrow / heading,Yes,Yes,Both,
+methodology,coreLabel,Yes,"Yes — ""Lifetime Experience""",Both,
+methodology,body[],Yes,Yes — 2 paragraphs,Both,DESKTOP ONLY here
+methodology,valuesHeading,Yes,Yes,Both,
+methodology,film,Yes,Yes — the sea loop,Both,
+methodology,poster,Yes — required by hook,No poster on any film,GAP,Every film here needs a first-frame still
+methodology,Frosted panel behind the copy,No,Yes — CSS,Landing only,"Presentation, not content. No field needed"
+experience,eyebrow / heading / sub,Yes,Yes,Both,Sub sets on two lines — model as two fields
+experience,quotesLabel,Yes,Yes — mobile rail label,Both,MOBILE ONLY here
+experience,featureTitle / featureSub,Yes,Yes,Both,
+experience,featureFilm,Yes,Yes,Both,Box LOCKED to 16:9 to match the file
+experience,featurePoster,Yes,No,GAP,
+experience,Play controls / dots / mobile peek,Not described,Yes,Landing only,"Behaviour, not content"
+accommodation,eyebrow / heading,Yes,Yes,Both,
+partners,heading,Yes,Yes — side label,Both,
+location,visible / heading / mapLabel,Yes,NO SECTION AT ALL,Retreat only,"Set visible:false, or the section needs designing — it is in no artboard supplied here"
+faq,heading / sub,Yes,Yes,Both,
+faq,image,Yes,Yes,Both,DESKTOP ONLY here
+finalCta,heading,Yes,Yes,Both,
+finalCta,primaryLabel / primaryHref,Yes,"Yes — single ""Register""",Both,Group already matches: this page dropped the secondary button
+finalCta,image,Yes,Yes,Both,
+Collection: leaders,Delegate rail,"Yes — onHomeRail, 4 of 8",Yes — 4 cards,Both,Portraits: 3 of 4 missing here
+Collection: content-pillars,Tabs and panels,Yes — order,Yes — 4,Both,
+Collection: content-pillars,Short label for mobile,Unverified,Yes — required (≤12 chars),GAP?,"Mobile tabs need a second, shorter label"
+Collection: methodology-nodes,Diagram circles,Yes — 3,Yes — 3 + core,Both,
+Collection: methodology-nodes,Two-line labels,Unverified,Yes — every node,GAP?,"""Sharing"" / ""Knowledge"" — two fields, not one string"
+Collection: values,Values list,Yes — 3,Yes — 3,Both,
+Collection: csuite-outcomes,Outcomes list,Yes,Yes — 5 bullets,Both,DESKTOP ONLY here
+Collection: home-stats,Statistics row,Yes,Yes — 3,Both,
+Collection: stay-rows,Accommodation facts,Yes — 4,Yes — 4,Both,
+Collection: stay-rows,Second value line,Unverified,Yes — 3 of 4 need it,GAP?,Model as two fields
+Collection: venue-photos,Venue carousel,Yes,"Yes — 4, with prev/next + live counter",Both,
+Collection: partners,Logo band,Yes — 3,Yes — 3,Both,All 3 logo files missing here
+Collection: partners,Per-logo display height,Unverified,Yes — 20 / 42 / 32px,GAP?,Or normalise in CSS and drop the idea
+Collection: faq-entries,Accordion,Yes — 4,Yes — 4,Both,
+Collection: testimonials,Quotation rail,Yes — consent: granted gate,Yes — 3 reflections,Both,
+Collection: testimonials,Zero-state when consent withheld,Rail renders empty by design,NOT HANDLED,BLOCKING,"All 4 rows are unconfirmed today, so the rail is empty. This page shows a labelled, dotted, empty band"
+Collection: testimonials,Film aspect / orientation,No — sharp cannot read MP4 dimensions,Cards are landscape; films are 720x1280 vertical,GAP,Store the aspect or enforce one on upload
+Cross-cutting,Empty field tolerance,"None — 41 accesses, no optional chaining",n/a,BLOCKING,Every field added here must be filled before deploy or /retreat 500s
+Cross-cutting,Typeface,"Kohinoor, no weight 900 available",Archivo/Inter substitute; 13 rules use 900,MISMATCH,"Adopt their tokens.css; delete the reconstructed one here, then re-check heading rhythm"
+Cross-cutting,Design tokens,"src/styles/tokens.css, unit-tested against design-system §16","assets/css/tokens.css, inferred from artboards",Retreat authoritative,Theirs wins outright
+Cross-cutting,Breakpoint-only fields,No concept of it,6 fields render at one breakpoint only,GAP,Add field help or editors write copy that never appears
+Cross-cutting,Media two-arm field (designKey | upload),Yes,Committed files,Both,Use designKey for these
+Cross-cutting,Draft vs published,_status: published required,n/a,Note,A write without it lands as a draft and changes nothing live
+Cross-cutting,Captions on played films,Open item,Same gap,Both,Films carry speech; no captions either side
+Cross-cutting,Gold discipline,"""Gold as punctuation only""",26 CSS rules reference gold,REVIEW,Deliberate pass needed before ship
+Cross-cutting,Icons,"Hand-drawn 24-viewBox outline, never a library",Same,Both,Already compliant
+Cross-cutting,Section order,"… Experience, Accommodation, Partners, Location, FAQ","… Experience, Partners, Accommodation, FAQ",MISMATCH,Partners and Accommodation are swapped. Admin group order is the editor's mental model — make them agree
