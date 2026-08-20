@@ -124,6 +124,26 @@ Excel or Sheets and filter the Status column to see what is outstanding.
 
 Regenerate it after content changes rather than editing it by hand.
 
+## Porting to a CMS
+
+`cms-content-model.csv` sketches the field schema this page implies — 55 entries,
+14 of them repeaters — with types, limits and the constraints a CMS build has to
+enforce. Read it alongside `content-inventory.csv`: the inventory says what the
+copy currently is, the model says how it should be stored.
+
+Three things that are easy to get wrong:
+
+- **Six fields render at one breakpoint only** (the pillar outcome bullets, the
+  methodology paragraphs, the footer link columns, the mobile rail label, the FAQ
+  side photo). Editors need that in the field help, or they will write copy that
+  never appears.
+- **Several fields carry a hard line break** — the accommodation facts, the
+  diagram labels, the Experience sub-heading. Model those as two fields rather
+  than one string with a `<br>` in it.
+- **The interactive parts stay in code.** Tabs, accordion, carousel, dots,
+  click-to-play and the reduced-motion handling are behaviour, not content. The
+  CMS supplies the items; the component decides how they behave.
+
 ## Reconstructed values
 
 Two things the artboards reference but that were not delivered with them:

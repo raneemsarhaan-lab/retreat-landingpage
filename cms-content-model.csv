@@ -1,0 +1,56 @@
+﻿Block,Field / collection,CMS field type,Repeatable,Required,Limit / validation,Renders on,Notes for the CMS build
+Global settings,Site / SEO title,Single-line text,—,Yes,~60 chars,Both,"Currently hardcoded and STALE: it still reads ""Step Away. Think Strategically."" though the hero now says ""The Strategy Retreat"". Decide which is the marketing title"
+Global settings,Meta description,Single-line text,—,Yes,~155 chars,Both,
+Global settings,Social share image,Media (image),—,Yes,1200x630,Both,Currently reuses the hero photo; give it a purpose-built crop
+Global settings,Brand mark (light-on-dark),Media (image),—,Yes,Transparent PNG/SVG,Both,Used in the nav at 32-34px. REPLACE the current file first — it was rebuilt from a screenshot
+Global settings,Brand lockup (dark-on-light),Media (image),—,Yes,Transparent PNG/SVG,Both,"Footer, 44-52px tall. Same caveat"
+Global settings,Brochure PDF,Media (document),—,Yes,—,Both,"Nav ""Download PDF"" is wired and 404s until this exists"
+Global settings,Primary nav links,Repeater: label + target,Yes (3),Yes,1-2 words,Desktop,Anchors to blocks on this page
+Global settings,Register CTA label / URL,Text + link,—,Yes,1 word,Both,"Appears in 3 places: nav, floating tab, closing band. Model once, reuse"
+Global settings,"Design tokens (colour, type, spacing)",—,—,—,—,—,DO NOT expose in the CMS. Keep in tokens.css. Editors changing brand colour per page will break contrast
+Hero,Eyebrow,Single-line text,—,Yes,~40 chars,Both,
+Hero,Headline,Single-line text,—,Yes,2-3 words,Both,"Breaks to 3 lines on mobile, 1 on desktop. Model as plain text and let CSS break it, or the editor must control breaks"
+Hero,Date,Single-line text,—,Yes,—,Both,"En dash, not hyphen"
+Hero,Location,Single-line text,—,Yes,—,Both,
+Hero,Marquee word,Single-line text,—,No,1 word,Both,Decorative; repeats along the bottom edge
+Hero,Background image,Media (image),—,Yes,">=1920px wide, focal point right of centre",Both,Needs a focal-point control: mobile crops to 72% across
+Delegates,Section label / heading / intro,Text x3,—,Yes,"Label 1-2 words, heading ~30, intro ~90",Both,
+Delegates,Delegate,REPEATER (4 now),Yes,Yes,—,Both,"Fields: name, role, company, portrait. Rail and dots follow the count automatically"
+Delegates,— Portrait,Media (image),In repeater,No,"Cut-out on transparent, 3:4, 600x800+",Both,3 of 4 are missing today; cards degrade to flat wells
+About,Sub-section,REPEATER (2),Yes,Yes,Heading ~55 chars,Both,"Fields: heading, body, photo. Body length drives the photo height on desktop"
+About,Stat,REPEATER (3),Yes,Yes,Value short,Both,"Fields: value, label"
+Knowledge Pillars,Section label / heading,Text x2,—,Yes,~55 chars,Both,
+Knowledge Pillars,Outcome bullet,REPEATER (5),Yes,No,~85 chars,DESKTOP ONLY,Warn editors in the field help: this copy never appears on mobile
+Knowledge Pillars,Intro photo,Media (image),—,Yes,Landscape,Both,
+Knowledge Pillars,Pillar,REPEATER (4),Yes,Yes,—,Both,"Fields: number, short label (mobile, ~12 chars), long label (desktop, ~26 chars), title, description, media"
+Knowledge Pillars,— Media,Media (image or video),In repeater,Yes,Landscape 2:1,Both,Panel 02 currently holds a VERTICAL video in a landscape slot — enforce orientation on upload
+Methodology,Section label / heading,Text x2,—,Yes,~30 chars,Both,
+Methodology,Paragraph,REPEATER (2),Yes,No,~160 chars,DESKTOP ONLY,Hidden on mobile by design — flag in field help
+Methodology,Diagram node,REPEATER (4),Yes,Yes,2 words,Both,"Fields: icon, line 1, line 2. Each label sets on two lines, so model the break as two fields rather than one string"
+Methodology,Values heading,Single-line text,—,Yes,~30 chars,Both,
+Methodology,Value,REPEATER (3),Yes,Yes,~90 chars,Both,"Fields: icon, name, description"
+Methodology,Background film,Media (video),—,No,Silent loop,Both,"Decorative, sits under an 85% scrim. Needs a poster frame"
+Experience,Section label / heading / sub,Text x3,—,Yes,Heading ~40 chars,Both,Sub-heading sets on two lines — model as two fields
+Experience,Feature film,Media (video),—,Yes,16:9,Both,"The box is LOCKED to 16:9 to match the current file. A different aspect needs a CSS change, not a CMS change"
+Experience,Feature title / caption,Text x2,—,Yes,~30 chars each,Both,
+Experience,Rail label,Single-line text,—,No,~30 chars,MOBILE ONLY,
+Experience,Reflection,"REPEATER (3, built for 6+)",Yes,Yes,Quote ~75 chars,Both,"Fields: quote, name, role, film, poster. Dots generate from the count — tested to 6"
+Experience,— Quote,Long text,In repeater,Yes,2-3 lines,Both,Space for 3 lines is reserved so all cards align; longer copy breaks that
+Experience,— Film,Media (video),In repeater,Yes,Match the card ratio,Both,"All 3 are STAND-INS today, and vertical sources in landscape cards"
+Partners,Section label,Single-line text,—,Yes,1 word,Both,
+Partners,Partner,REPEATER (3),Yes,Yes,—,Both,"Fields: name, logo, display height, optional link. All 3 logos missing — the wall shows names as text"
+Accommodation,Section label / heading,Text x2,—,Yes,~28 chars,Both,
+Accommodation,Fact,REPEATER (4),Yes,Yes,2 short lines,Both,"Fields: label, line 1, line 2. Three of the four use a hard line break — model as two fields"
+Accommodation,Venue photo,REPEATER (4),Yes,Yes,Centre-cropped to 4:3,Both,Carousel and its live counter follow the count
+FAQ,Section label / heading / intro,Text x3,—,Yes,Heading ~30 chars,Both,
+FAQ,Question,REPEATER (4),Yes,Yes,"Q ~40, A ~220 chars",Both,"Fields: question, answer. Accordion extends freely"
+FAQ,Side photo,Media (image),—,No,Landscape,DESKTOP ONLY,
+Closing CTA,Heading,Single-line text,—,Yes,~35 chars,Both,
+Closing CTA,Button label / URL,Text + link,—,Yes,1 word,Both,Reuse the global Register CTA
+Closing CTA,Background image,Media (image),—,Yes,Full-bleed,Both,Shown at 45% behind a scrim
+Footer,Blurb,Long text,—,Yes,1-2 sentences,Both,
+Footer,Link column,REPEATER (3),Yes,No,—,DESKTOP ONLY,"Fields: heading, links[]. Hidden on mobile by design"
+Footer,Copyright,Single-line text,—,Yes,—,Both,UNRESOLVED: confirm the legal entity before launch
+Footer,Legal links,Repeater: label + target,Yes (2),No,—,DESKTOP ONLY,Privacy and Contact pages do not exist yet
+Every image field,Alt text,Single-line text,Per asset,Conditional,—,Both,"Make it a required sibling of every non-decorative image. 9 of 20 images here are decorative and take an empty alt — the model needs a ""decorative"" toggle, not a forced value"
+Every video field,Poster frame,Media (image),Per asset,Yes,First frame,Both,No video currently has one; without it the click-to-play cards show black until the file decodes
